@@ -1,9 +1,11 @@
 import './App.css';
+import Home from './screens/HomePage'
+
 
 const App= () =>{
   return (
     <div className="App">
-     Thesis Project
+    <Home></Home>
     </div>
   );
 }

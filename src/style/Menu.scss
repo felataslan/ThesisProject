@@ -1,0 +1,48 @@
+.head{
+    position: sticky;
+    height: 80px;
+    background-color: red;
+}
+.Header{
+    color: white;
+    position: absolute;
+    left: 40px;
+    font-size: 50px;
+    text-shadow: 3px 3px 3px gray;
+    margin-right: 30px;
+
+}
+ul{
+    float: right;
+    margin-right: 20px;
+    list-style-type: none;
+    display: inline-flex;
+    li{
+        height: 20px;
+        padding-left: 20px;
+        border-radius: 10px;
+    }
+}
+.signUpButton{
+    margin-top: 20px;
+    height: 40px !important ;
+
+}
+.loginButton{
+    margin-top: 20px;
+    height: 40px;
+}
+.navbar{
+    margin-top: 40px;
+    float:left;
+    background-color: maroon;
+    width: 100%;
+   ul{
+    
+    li{ 
+        color:white;
+        padding-left:70px;
+    }
+   }
+
+}
