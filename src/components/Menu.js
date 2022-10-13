@@ -5,38 +5,39 @@ import 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 
-const Menu = () => {
+const Menu = ({to='/'}) => {
+
   return (
     <div style={{ fontSize: '16px' }}>
-      <nav className='head'>
+      <nav className='head bg-danger'>
         <h1 className='Header'>HIRE STUFF</h1>
 
         <ul >
-          <li >
-            <Link className='btn btn-primary  signUpButton  ' >
+          <li style={{display: to==='/signup' ? 'none': 'block'}}>
+            <Link to={'/signup'} className='btn btn-primary  signUpButton  ' >
               <p className=' buttonTextLayout'>Sign Up</p>
             </Link>
           </li>
           <li>
-            <Link className='btn btn-success loginButton '>
+            <Link to={'/login'}  className='btn btn-success loginButton '>
               <p className='buttonTextLayout'>Login</p>
             </Link>
           </li>
         </ul>
-      
 
-      <div className='navbar'>
 
-      <ul >
-        <li>Anasayfa</li>
-        <li>Takılar</li>
-        <li>Ev Eşyaları</li>
-        <li>Teknolojik Aletler</li>
+        <div className='navbar ' >
 
-      </ul>
-      </div>
+          <ul>
+            <li className='nav-item '><Link to={'/'}>Anasayfa</Link></li>
+            <li className='nav-item '><Link to={'/'}>Takılar</Link></li>
+            <li className='nav-item '><Link to={'/'}>Ev Eşyaları</Link></li>
+            <li className='nav-item '><Link to={'/'}>Teknolojik Aletler</Link></li>
+
+          </ul>
+        </div>
       </nav>
-    
+
 
 
     </div>
