@@ -1,7 +1,6 @@
 .head{
     position: sticky;
     height: 80px;
-    background-color: red;
 }
 .Header{
     color: white;
@@ -35,13 +34,21 @@ ul{
 .navbar{
     margin-top: 40px;
     float:left;
-    background-color: maroon;
+    background-color:rgb(140, 10, 10);
     width: 100%;
    ul{
     
+    a{
+        text-decoration: none;
+        color:white;
+        
+    }
     li{ 
         color:white;
         padding-left:70px;
+        :hover{
+            color:darkgray;
+        }
     }
    }
 

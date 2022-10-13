@@ -1,8 +1,11 @@
 import React from 'react'
+import Menu from '../components/Menu'
 
 const SignUp = () => {
   return (
-    <div>SignUp</div>
+    <div>
+      <Menu/>
+    </div>
   )
 }
 
