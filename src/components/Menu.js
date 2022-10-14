@@ -5,7 +5,7 @@ import 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 
-const Menu = ({to='/'}) => {
+const Menu = (prop) => {
 
   return (
     <div style={{ fontSize: '16px' }}>
@@ -13,13 +13,13 @@ const Menu = ({to='/'}) => {
         <h1 className='Header'>HIRE STUFF</h1>
 
         <ul >
-          <li style={{display: to==='/signup' ? 'none': 'block'}}>
+          <li style={{display: prop.to==='/signup' ? 'none': 'block'}}>
             <Link to={'/signup'} className='btn btn-primary  signUpButton  ' >
               <p className=' buttonTextLayout'>Sign Up</p>
             </Link>
           </li>
-          <li>
-            <Link to={'/login'}  className='btn btn-success loginButton '>
+          <li >
+            <Link to={'/login'} style={{display: prop.to==='/login' ? 'none': 'block'}}  className='btn btn-success loginButton '>
               <p className='buttonTextLayout'>Login</p>
             </Link>
           </li>
