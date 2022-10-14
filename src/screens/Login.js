@@ -1,68 +1,191 @@
-import React from 'react';
+import React from 'react'
+import eyeIcon from "../image/eye.png"
+import Warning from '../image/warning.png'
+import "../style/login.scss"
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import '../style/Menu.scss'
+import axios from "axios"
+import { useNavigate } from "react-router-dom";
+// import { useLocation } from 'react-router-dom'
 import Menu from '../components/Menu'
-import '../style/login.scss'
-import {
-  MDBContainer,
-  MDBCol,
-  MDBRow,
-  MDBBtn,
-  MDBInput,
-  MDBCheckbox
-}
-from 'mdb-react-ui-kit';
+import Footer from '../components/Footer'
+function Login() {
 
-const Login=()=> {
+  const navigate = useNavigate();
+  // const location=useLocation();
+  // const [control, setControl] = useState(true);
+  const [controlVisible, setControlVisible] = useState(true);
+  const [islogin, setIsLogin] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  function InvalidMsg(e) {
+    if (e.target.value === '') {
+      e.target.setCustomValidity('Please fill in the marked fields');
+    }
+    else if (e.target.validity.typeMismatch) {
+      e.target.setCustomValidity('Please write a valid e-mail address in the marked field.');
+    }
+    else {
+      e.target.setCustomValidity('');
+    }
+    return true;
+  }
+  function InvalidMsgPassword(e) {
+    if (e.target.value === '') {
+      e.target.setCustomValidity('Please fill in the marked fields');
+    }
+    else if (e.target.validity.patternMismatch) {
+      e.target.setCustomValidity('Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters');
+    }
+    else {
+      e.target.setCustomValidity('');
+    }
+    return true;
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(email)
+    console.log(password)
+    axios.post('/api/user/login', {
+      "email": email,
+      "password": password,
+    })
+      .then((result) => {
+        console.log(result)
+        if (result.status === 200) {
+          localStorage.setItem('token',result.data.accessToken)
+          localStorage.setItem('auth',JSON.stringify(result.data.data))
+          console.log(result.data.data + "Login 64 Çalıştı.")
+          navigate("/")
+
+          // if(localStorage.getItem('userSurvey')){
+          //   let object=JSON.parse(localStorage.getItem('userSurvey'))
+          //   axios.post(
+          //     '/api/survey/createSurvey',
+          //     {
+          //         "title":object.title,
+          //         "question":object.question,
+          //         "choice":object.choice,
+          //     },
+          //     {
+          //         headers: {
+          //             authorization: localStorage.getItem("token"),
+          //         },
+          //     }
+          //    ).then((result)=>{
+          //        localStorage.removeItem("userSurvey")
+          //        navigate("/userPage")
+          //    })
+          // }
+
+        
+        }
+        else {
+          alert("username or password is wrong");
+        }
+      }).catch((result) => {
+        setIsLogin(true)
+      })
+  }
+
   return (
     <div>
-        <Menu/>
+   <Menu to='login'/>
 
-        <MDBContainer className="p-3 " >
-
-
-        <MDBRow  id='login' >
-          <h2> Login  </h2>
-           
-          <MDBCol  col='4' md='6'>
-
-
-            <MDBInput wrapperClass='mb-4' label='Email address' id='formControlLg' type='email' size="md"/>
-            <MDBInput wrapperClass='mb-4' label='Password' id='formControlLg' type='password' size="md"/>
-
-
-            <div className="d-flex justify-content-between mx-4 mb-4">
-              <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
+      <div className='login bg-danger'>
+          
+          <h3 className='continue'>Login</h3>
+        
+        <div className='form'>
+          <form onSubmit={handleSubmit}>
+            <div class="form-group">
+              <label for="exampleInputEmail1">E-mail</label>
+              <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
+              <input title="Please fill in the marked fields" onInput={InvalidMsg} onInvalidCapture={InvalidMsg} value={email} onChange={(e) => setEmail(e.target.value)} required type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your e-mail address" />
             </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Şifre</label>
+              <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
+              <input title='Please fill in the marked fields' onInput={InvalidMsgPassword} onInvalidCapture={InvalidMsgPassword} value={password} onChange={(e) => setPassword(e.target.value)} required type={controlVisible ? "password" : "text"} class="form-control" id="exampleInputPassword1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your password" />
+              <div style={{top:islogin? '-25px':null, left:"90%", position:'relative'}} className='eyeIconImg' type='button' onClick={() => setControlVisible(!controlVisible)}>
+                <img src={eyeIcon} alt="" />
+              </div>
+            </div>
+            <div style={{display:islogin? 'flex': 'none'}} className='wrongLogIn'>
+              <img style={{height:"20px"}} src={Warning} alt="" />
+              <p style={{marginLeft:"5px"}}>Tekrar Şifre</p>
+            </div>
+            <div className='buttonLayout'>
+              <button className='submitButton' type="submit">Login</button>
+            </div>
+          </form>
+          <div className='forgetUsername'>
+          <p>Forget your<Link to={""}>username</Link> or<Link to={""}>password?</Link></p>
+          </div>
+          <div className='haveAccount'>
+            <p>Don't have an account?</p>
+            <Link to={"/signup"} href="">Sign Up</Link>
+          </div>
+        </div>
+      </div>
+      <Footer/>
+    </div>
+  )
+}
+export default Login
 
-            <MDBBtn className="mb-4 w-100 bg-danger" size="md">Login</MDBBtn>
+
+
+// import React from 'react';
+// import Menu from '../components/Menu'
+// import '../style/login.scss'
+// import {
+//   MDBContainer,
+//   MDBCol,
+//   MDBRow,
+//   MDBBtn,
+//   MDBInput,
+//   MDBCheckbox
+// }
+// from 'mdb-react-ui-kit';
+
+// const Login=()=> {
+//   return (
+//     <div>
+//         <Menu/>
+
+//         <MDBContainer className="p-3 " >
+
+
+//         <MDBRow  id='login' >
+//           <h2> Login  </h2>
+           
+//           <MDBCol  col='4' md='6'>
+
+
+//             <MDBInput wrapperClass='mb-4' label='Email address' id='formControlLg' type='email' size="md"/>
+//             <MDBInput wrapperClass='mb-4' label='Password' id='formControlLg' type='password' size="md"/>
+
+
+//             <div className="d-flex justify-content-between mx-4 mb-4">
+//               <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
+//             </div>
+
+//             <MDBBtn className="mb-4 w-100 bg-danger" size="md">Login</MDBBtn>
 
           
 
-          </MDBCol>
+//           </MDBCol>
 
-        </MDBRow>
+//         </MDBRow>
 
-        </MDBContainer>
-    </div>
-    
-  );
-}
-
-export default Login;
-
-// import React from 'react'
-
-
-
-// const Login = () => {
-  
-  
-//   return (
-//     <div>
-//       <Menu />
-
-     
+//         </MDBContainer>
 //     </div>
-//   )
+    
+//   );
 // }
 
-// export default Login
+// export default Login;
+
