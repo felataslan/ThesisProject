@@ -5,22 +5,21 @@ import 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 
-const Menu = (prop) => {
+const Menu = (prop,{isLogin}) => {
 
   return (
     <div style={{ fontSize: '16px' }}>
       <nav className='head bg-danger'>
         <h1 className='Header'>HIRE STUFF</h1>
-
         <ul >
-          <li style={{display: prop.to==='/signup' ? 'none': 'block'}}>
+          <li style={{display: prop.to==='signup' || isLogin ? 'none': 'block'}}>
             <Link to={'/signup'} className='btn btn-primary  signUpButton  ' >
               <p className=' buttonTextLayout'>Sign Up</p>
             </Link>
           </li>
           <li >
-            <Link to={'/login'} style={{display: prop.to==='/login' ? 'none': 'block'}}  className='btn btn-success loginButton '>
-              <p className='buttonTextLayout'>Login</p>
+            <Link to={'/login'} style={{display: prop.to==='login' ? 'none': 'block'}}  className='btn btn-success loginButton '>
+            <p className='buttonTextLayout'>{isLogin ? JSON.parse(localStorage.getItem("auth")).name : "Login"}</p>
             </Link>
           </li>
         </ul>

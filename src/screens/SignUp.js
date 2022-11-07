@@ -7,10 +7,10 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Menu from '../components/Menu';
 import Footer from '../components/Footer'
-// import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const SignUp =()=> {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     // const [countryId, setCountryId] = useState(0);
     // const [countryOption, setcountryOption] = useState(0);
     const [controlVisible, setControlVisible] = useState(true);
@@ -26,7 +26,7 @@ const SignUp =()=> {
     const [gender, setgender] = useState("");
     const [city, setCity] = useState("");
     // const [country, setCountry] = useState("");
-    // const [islogin, setIsLogin] = useState(false);
+    const [islogin, setIsLogin] = useState(false);
     // const [countryList, setCountryList] = useState([]);
     // const [cityList, setCityList] = useState([]);
 
@@ -87,43 +87,40 @@ const SignUp =()=> {
         return true;
     }
     const handleSubmit = (e) => {
-        // e.preventDefault();
-        // console.log(name);
-        // console.log(email);
-        // console.log(password);
-        // console.log(gender);
-        // console.log(city);
-        // console.log(country);
-        // axios.post('/api/user/register', {
-        //     "userName": name,
-        //     "email": email,
-        //     "password": password,
-        //     "gender": gender,
-        //     "city": city,
-        //     "country": country
-        // })
-        //     .then((result) => {
-        //         if (result.status) {
-        //             alert("User successfully registered")
-        //             navigate("/login");
-        //         }
-        //     })
-        //     .catch((result) => {
-        //         console.log(result);
-        //         setIsLogin(true)
-        //     })
+        e.preventDefault();
+        console.log(name);
+        console.log(surName);
+        console.log(userName);
+        console.log(email);
+        console.log(password);
+        console.log(gender);
+        console.log(city);
+        axios.post('http://localhost:3100/users/signup', {
+            "name":name,
+            "surname":surName,
+            "userName": userName,
+            "email": email,
+            "password": password,
+            "gender": gender,
+            "city": city,
+        })
+            .then((result) => {
+                if (result.status) {
+                    alert("User successfully registered")
+                    navigate("/login");
+                }
+            })
+            .catch((result) => {
+                
+                console.log(result);
+                setIsLogin(true)
+                console.log(islogin)
+            })
            
 
+    /////////
 
-
-
-
-
-
-
-    ///////////
-
-        //console.log(email);
+        console.log(email);
     }
     return (
         <div className='App'>
@@ -140,18 +137,18 @@ const SignUp =()=> {
                     <div class="form-group">
                             <label for="exampleInputName">Ad</label>
                             <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-                            <input onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen adınızı giriniz.")}  value={name}  required type="text" class="form-control" id="exampleInputName" aria-describedby="nameHelp" placeholder="Lütfen Adınızı giriniz" />
+                            <input onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen adınızı giriniz.")}  value={name} onChange={(e) => setName(e.target.value)}  required type="text" class="form-control" id="exampleInputName" aria-describedby="nameHelp" placeholder="Lütfen Adınızı giriniz" />
                         </div>
                         <div class="form-group">
                             <label for="exampleInputSurname">Soyad</label>
                             <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-                            <input onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen soyadınızı giriniz.")} value={surName} required type="text" class="form-control" id="exampleInputSurname" aria-describedby="surnameHelp" placeholder="Lütfen Soyadınızı giriniz" />
+                            <input onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen soyadınızı giriniz.")} value={surName} onChange={(e) => setSurname(e.target.value)}  required type="text" class="form-control" id="exampleInputSurname" aria-describedby="surnameHelp" placeholder="Lütfen Soyadınızı giriniz" />
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Username</label>
+                            <label for="exampleInputUserName1">Username</label>
                             <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-                            <input onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen kullanıcı adınızı giriniz")} value={userName} onChange={(e) => setName(e.target.value)} required type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your username" />
+                            <input onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen kullanıcı adınızı giriniz")} value={userName} onChange={(e) => setUserName(e.target.value)} required  type="name" class="form-control" id="exampleInputUserName1" aria-describedby="emailHelp" placeholder="Enter your username" />
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
@@ -161,8 +158,8 @@ const SignUp =()=> {
                         <div class="form-group">
                             <label for="sel1">Choose Gender</label>
                             <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-                            <select  onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen cinsiyetinizi seçiniz")} value={gender} onChange={(e) => setgender(e.target.value)} required class="form-control" id="sel1" name='sellist' >
-                                <option></option>
+                            <select   onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen cinsiyetinizi seçiniz")} value={gender} onChange={(e) => setgender(e.target.value)} required class="form-control" id="sel1" name='sellist' >
+                                <option placeholder='Lütfen cinsiyetinizi seçiniz'></option>
                                 <option>Kadın</option>
                                 <option>Erkek</option>
                             </select>
