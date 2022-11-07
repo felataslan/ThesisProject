@@ -49,7 +49,7 @@ function Login() {
     e.preventDefault();
     console.log(email)
     console.log(password)
-    axios.post('/api/user/login', {
+    axios.post('http://localhost:3100/users/login', {
       "email": email,
       "password": password,
     })
@@ -61,33 +61,13 @@ function Login() {
           console.log(result.data.data + "Login 64 Çalıştı.")
           navigate("/")
 
-          // if(localStorage.getItem('userSurvey')){
-          //   let object=JSON.parse(localStorage.getItem('userSurvey'))
-          //   axios.post(
-          //     '/api/survey/createSurvey',
-          //     {
-          //         "title":object.title,
-          //         "question":object.question,
-          //         "choice":object.choice,
-          //     },
-          //     {
-          //         headers: {
-          //             authorization: localStorage.getItem("token"),
-          //         },
-          //     }
-          //    ).then((result)=>{
-          //        localStorage.removeItem("userSurvey")
-          //        navigate("/userPage")
-          //    })
-          // }
-
-        
         }
         else {
           alert("username or password is wrong");
         }
       }).catch((result) => {
-        setIsLogin(true)
+        setIsLogin(false)
+        console.log(result)
       })
   }
 

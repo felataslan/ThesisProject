@@ -1,22 +1,22 @@
-import axios from 'axios';
+// import axios from 'axios';
 import './App.css';
 import Home from './screens/HomePage'
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 
 const App = () => {
-  useEffect(() => {
+  // useEffect(() => {
 
-    const getData = async () => {
-      const response = await axios.get('http://localhost:3100/data')
+  //   const getData = async () => {
+  //     const response = await axios.get('http://localhost:3100/data')
 
-      console.log(response)
-      // return response;
-    }
+  //     console.log(response)
+  //     return response;
+  //   }
 
-    getData();
+  //   getData();
 
-  }, [])
+  // }, [])
 
   return (
     <div className="App">
