@@ -56,9 +56,9 @@ function Login() {
       .then((result) => {
         console.log(result)
         if (result.status === 200) {
-          localStorage.setItem('token',result.data.accessToken)
-          localStorage.setItem('auth',JSON.stringify(result.data.data))
-          console.log(result.data.data + "Login 64 Çalıştı.")
+          localStorage.setItem('token',result.data.token)
+          localStorage.setItem('auth',JSON.stringify(result.data))
+          console.log(JSON.stringify(result.data) + "Login 64 Çalıştı.")
           navigate("/")
 
         }
