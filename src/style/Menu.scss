@@ -1,3 +1,29 @@
+.Menu {
+   
+    z-index: 100;
+    height: 75px;
+    top: -10px;
+    left: 0px;
+    background-color: #EBF0FF !important;
+    ul {
+        list-style-type: none;
+
+        li {
+            text-decoration: none;
+
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .navInfo {
+        margin-left: -10px;
+
+
+    }
+}
+
 .head{
     position: sticky;
     height: 80px;
@@ -10,6 +36,53 @@
     text-shadow: 3px 3px 3px gray;
     margin-right: 30px;
 
+}
+.UserIcon {
+    width: 40px;
+    height: 40px;
+    background-image: url("./UserIcon.png");
+    background-size: cover;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.openMenu {
+    width: 150px;
+    height: 78px;
+    background-color: red;
+    position: absolute;
+    border-radius: 10px;
+    top: 75px;
+    right: 20px;
+    background-color: #aab5d4;
+    z-index: 100;
+    
+
+
+    .menuItem {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-top: 1px solid rgb(109, 103, 103);
+
+        &:hover {
+            background-color: #244dbd;
+        }
+
+        .menuLink {
+            margin-left: 5px;
+            color: #FFFFFF;
+        }
+    }
+}
+
+.openMenuLogIn {
+    width: 150px;
+    height: 180px !important;
+    position: absolute;
+    border-radius: 10px;
+    top: 65px;
+    right: 20px;
+    background-color: #aab5d4;
+    
 }
 ul{
     float: right;
