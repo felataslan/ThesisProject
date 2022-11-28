@@ -32,7 +32,7 @@ const Menu = (prop) => {
           </li>
           <li >
 
-            <Link to={prop.isLogin?'/':'/login'} style={{ display: prop.to === 'login' ? 'none' : 'block' }} className='btn btn-success loginButton '>
+            <Link to={prop.isLogin?'/profile':'/login'} style={{ display: prop.to === 'login' ? 'none' : 'block' }} className='btn btn-success loginButton '>
               
               <p className='buttonTextLayout'>{prop.isLogin ? JSON.parse(localStorage.getItem("auth")).user.name : "Login"}</p>
 
@@ -53,13 +53,13 @@ const Menu = (prop) => {
                   backgroundColor: "#E491924D",
                   marginTop: "10px"
                   }} className='openMenuLogIn' >
-                  <div className='profileContainer' onClick={() => navigate("/")} style={{
+                  <div className='profileContainer' onClick={() => navigate("/profile")} style={{
                     width: "80%", height: "30px", backgroundColor: "#F5F5F5CC", marginBottom: "10px", display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
                     borderRadius: "10px"
                   }}>
-                    <Link className='menuLinkContain' to={"/"} style={{
+                    <Link className='menuLinkContain' to={"/profile"} style={{
                       fontFamily: 'Inter',
                       fontStyle: "normal",
                       fontWeight: "700",
@@ -69,13 +69,13 @@ const Menu = (prop) => {
                       color: "#000000",
                     }}>Profile</Link>
                   </div>
-                  <div className='profileContainer' onClick={() => navigate("/")} style={{
+                  <div className='profileContainer' onClick={() => navigate("/listStuff")} style={{
                     width: "80%", height: "30px", backgroundColor: "#F5F5F5CC", marginBottom: "10px", display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
                     borderRadius: "10px"
                   }}>
-                    <Link className='menuLinkContain' to={"/"} style={{
+                    <Link className='menuLinkContain' to={"/listStuff"} style={{
                       fontFamily: 'Inter',
                       fontStyle: "normal",
                       fontWeight: "700",
@@ -85,13 +85,29 @@ const Menu = (prop) => {
                       color: "#000000",
                     }}>Ürün Listem</Link>
                   </div>
-                  <div className='profileContainer' onClick={() => navigate("/")} style={{
+                  <div className='profileContainer' onClick={() => navigate("/addStuff")} style={{
                     width: "80%", height: "30px", backgroundColor: "#F5F5F5CC", marginBottom: "10px", display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
                     borderRadius: "10px"
                   }}>
-                    <Link className='menuLinkContain' to={"/"} style={{
+                    <Link className='menuLinkContain' to={"/addStuff"} style={{
+                      fontFamily: 'Inter',
+                      fontStyle: "normal",
+                      fontWeight: "700",
+                      fontSize: "13px",
+                      lineHeight: "21px",
+                      textAlign: "center",
+                      color: "#000000",
+                    }}>Ürün Ekle</Link>
+                  </div>
+                  <div className='profileContainer' onClick={() => navigate("/userInfo")} style={{
+                    width: "80%", height: "30px", backgroundColor: "#F5F5F5CC", marginBottom: "10px", display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: "10px"
+                  }}>
+                    <Link className='menuLinkContain' to={"/userInfo"} style={{
                       fontFamily: 'Inter',
                       fontStyle: "normal",
                       fontWeight: "700",
@@ -134,9 +150,9 @@ const Menu = (prop) => {
 
           <ul>
             <li className='nav-item '><Link to={'/'}>Anasayfa</Link></li>
-            <li className='nav-item '><Link to={'/'}>Takılar</Link></li>
-            <li className='nav-item '><Link to={'/'}>Ev Eşyaları</Link></li>
-            <li className='nav-item '><Link to={'/'}>Teknolojik Aletler</Link></li>
+            <li className='nav-item '><Link to={'/jewelry'}>Takılar</Link></li>
+            <li className='nav-item '><Link to={'/furniture'}>Ev Eşyaları</Link></li>
+            <li className='nav-item '><Link to={'/tecnology'}>Teknolojik Aletler</Link></li>
 
           </ul>
         </div>
