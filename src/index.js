@@ -11,6 +11,13 @@ import {
 import Login from './screens/Login';
 import SignUp from './screens/SignUp';
 import HomePage from './screens/HomePage';
+import  Jewelry  from './screens/Jewelry';
+import Furniture from './screens/Furnitures';
+import Tecnology from './screens/Tecnology';
+import Profile from './screens/Profile';
+import AddStuff from './screens/AddStuff';
+import ListStuff from './screens/ListStuff';
+import UserInfo from './screens/UserInfo';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,6 +27,17 @@ root.render(
       <Route path='/home' element={<HomePage/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/signup' element={<SignUp/>}/>
+      <Route path='/jewelry' element={<Jewelry/>}/>
+      <Route path='/furniture' element={<Furniture/>}/>
+      <Route path='/tecnology' element={<Tecnology/>}/>
+      <Route path='/profile' element={<Profile/>}/>
+      <Route path='/addStuff' element={<AddStuff/>}/>
+      <Route path='/listStuff' element={<ListStuff/>}/>
+      <Route path='/userInfo' element={<UserInfo/>}/>
+
+
+
+
 
     </Routes>
   </Router>
