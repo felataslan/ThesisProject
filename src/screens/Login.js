@@ -56,6 +56,7 @@ function Login() {
       .then((result) => {
         console.log(result)
         if (result.status === 200) {
+          document.cookie=result.data.token
           localStorage.setItem('token',result.data.token)
           localStorage.setItem('auth',JSON.stringify(result.data))
           console.log(JSON.stringify(result.data) + "Login 64 Çalıştı.")
@@ -80,16 +81,17 @@ function Login() {
           <h3 className='continue'>Login</h3>
         
         <div className='form col-md-12'>
-          <form onSubmit={handleSubmit}>
-            <div class="form-group">
-              <label for="exampleInputEmail1">E-mail</label>
+          <form onSubmit={handleSubmit}
+          >
+            <div className="form-group">
+              <label htmlFor="exampleInputEmail1">E-mail</label>
               <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-              <input title="Please fill in the marked fields" onInput={InvalidMsg} onInvalidCapture={InvalidMsg} value={email} onChange={(e) => setEmail(e.target.value)} required type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your e-mail address" />
+              <input title="Please fill in the marked fields" onInput={InvalidMsg} onInvalidCapture={InvalidMsg} value={email} onChange={(e) => setEmail(e.target.value)} required type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your e-mail address" />
             </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Şifre</label>
+            <div className="form-group">
+              <label htmlFor="exampleInputPassword1">Şifre</label>
               <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-              <input title='Please fill in the marked fields' onInput={InvalidMsgPassword} onInvalidCapture={InvalidMsgPassword} value={password} onChange={(e) => setPassword(e.target.value)} required type={controlVisible ? "password" : "text"} class="form-control" id="exampleInputPassword1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your password" />
+              <input title='Please fill in the marked fields' onInput={InvalidMsgPassword} onInvalidCapture={InvalidMsgPassword} value={password} onChange={(e) => setPassword(e.target.value)} required type={controlVisible ? "password" : "text"} className="form-control" id="exampleInputPassword1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your password" />
               <div style={{top:islogin? '-25px':null, left:"90%", position:'relative'}} className='eyeIconImg' type='button' onClick={() => setControlVisible(!controlVisible)}>
                 <img src={eyeIcon} alt="" />
               </div>
