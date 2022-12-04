@@ -7,7 +7,7 @@ const Profile = () => {
 
   return (
     <div>
-        <Menu isLogin={localStorage.getItem("token")? true:false}/>
+        <Menu isLogin={true}/>
 
           <h1>User Profile</h1>  
 

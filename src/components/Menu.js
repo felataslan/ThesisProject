@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 
 
-const Menu = (prop) => {
+const Menu = ({isLogin},prop) => {
 
   const [control, setControl] = useState(true);
   const navigate = useNavigate();
@@ -25,23 +25,25 @@ const Menu = (prop) => {
       <nav className='head bg-danger'>
         <h1 className='Header'>HIRE STUFF</h1>
         <ul >
-          <li style={{ display: prop.isLogin ? 'none' : 'block' }}>
+          <li style={{ display: isLogin ? 'none' : 'block' }}>
             <Link to={'/signup'} className='btn btn-primary  signUpButton  ' >
               <p className=' buttonTextLayout'>Sign Up</p>
             </Link>
           </li>
           <li >
 
-            <Link to={prop.isLogin?'/profile':'/login'} style={{ display: prop.to === 'login' ? 'none' : 'block' }} className='btn btn-success loginButton '>
+            <Link to={isLogin ? '/profile':'/login'} style={{ display: prop.to === 'login' ? 'none' : 'block' }} className='btn btn-success loginButton '>
               
-              <p className='buttonTextLayout'>{prop.isLogin ? JSON.parse(localStorage.getItem("auth")).user.name : "Login"}</p>
+              <p className='buttonTextLayout'>{
+              isLogin ? JSON.parse(localStorage.getItem("auth")).user.name : 
+              "Login"}</p>
 
             </Link>
           </li>
 
           <li>
           <div onClick={() => setControl(!control)} className='UserIcon'>
-            {!prop.isLogin ?
+            {!isLogin ?
               <div>
               </div> : 
               <div onClick={() => setControl(!control)} className='UserIcon'>

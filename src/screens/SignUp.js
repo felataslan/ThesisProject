@@ -126,7 +126,7 @@ const SignUp =()=> {
         <div className='App'>
            <Menu to='signup'/>
 
-            <div className='SignUp bg-danger' id='signup'>
+            <div className='SignUp bg-danger' id='edit'>
                 
                     <h3>Sign Up</h3>
                 
@@ -137,7 +137,11 @@ const SignUp =()=> {
                     <div class="form-group">
                             <label for="exampleInputName">Ad</label>
                             <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-                            <input onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen adınızı giriniz.")}  value={name} onChange={(e) => setName(e.target.value)}  required type="text" class="form-control" id="exampleInputName" aria-describedby="nameHelp" placeholder="Lütfen Adınızı giriniz" />
+                            <input 
+                            onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen adınızı giriniz.")}  
+                            value={name} onChange={(e) => setName(e.target.value)}  
+                            required type="text" class="form-control" id="exampleInputName" 
+                            aria-describedby="nameHelp" placeholder="Lütfen Adınızı giriniz" />
                         </div>
                         <div class="form-group">
                             <label for="exampleInputSurname">Soyad</label>

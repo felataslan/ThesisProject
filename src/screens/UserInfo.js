@@ -7,27 +7,29 @@ import { useState } from 'react';
 import Menu from '../components/Menu';
 import Footer from '../components/Footer'
 import axios from "axios";
-import { json, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const UserInfo = () => {
     const navigate = useNavigate();
     const [controlVisible, setControlVisible] = useState(true);
+    const [controlVisibleNewPass, setControlVisibleNewPass] = useState(true);
     const [controlVisibleConfirm, setControlVisibleConfirm] = useState(true);
+
     // const [control, setControl] = useState(true);
     // const [vectorControl, setvectorControl] = useState(false);
-    const [nameUpdate, setNameUpdate] = useState(
+    const [nameUpdate, setnameUpdate] = useState(
         localStorage.getItem('auth')
             ? JSON.parse(localStorage.getItem('auth')).user.name
             : null);
-    const [surNameUpdate, setSurnameUpdate] = useState(
+    const [surNameUpdate, setsurnameUpdate] = useState(
         localStorage.getItem('auth')
             ? JSON.parse(localStorage.getItem('auth')).user.surname
             : null);
-    const [userNameUpdate, setUserNameUpdate] = useState(
+    const [userNameUpdate, setuserNameUpdate] = useState(
         localStorage.getItem('auth')
             ? JSON.parse(localStorage.getItem('auth')).user.userName
             : null
     );
-    const [emailUpdate, setEmailUpdate] = useState(
+    const [emailUpdate, setemailUpdate] = useState(
         localStorage.getItem('auth')
             ? JSON.parse(localStorage.getItem('auth')).user.email
             : null
@@ -37,13 +39,15 @@ const UserInfo = () => {
             ? JSON.parse(localStorage.getItem('auth')).user.gender
             : null
     );
-    const [cityUpdate, setCityUpdate] = useState(
+    const [cityUpdate, setcityUpdate] = useState(
         localStorage.getItem('auth')
             ? JSON.parse(localStorage.getItem('auth')).user.city
             : null
     );
     const [password, setPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+
     const [islogin, setIsLogin] = useState(false);
 
     function InvalidMsg(e) {
@@ -58,27 +62,31 @@ const UserInfo = () => {
         }
         return true;
     }
+
     function InvalidMsgPassword(e) {
-        console.log(password)
-        if (e.target.value === '') {
-            e.target.setCustomValidity('Please fill in the marked fields');
-        }
-        else if (e.target.validity.patternMismatch) {
-            e.target.setCustomValidity('Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters');
-        }
-        else if (password === confirmPassword) {
-            e.target.setCustomValidity('');
+        console.log(password);
+        if (e.target.value === "") {
+            e.target.setCustomValidity("Please fill in the marked fields");
+        } else if (password === newPassword) {
+            e.target.setCustomValidity("");
         }
         return true;
     }
     function InvalidMsgConfirmPassword(e) {
-        console.log("password confrim passwrod")
-        console.log(password)
-        console.log(confirmPassword)
-        if (e.target.value === '') {
-            e.target.setCustomValidity('Please fill in the marked fields');
+        console.log("password confrim passwrod");
+        console.log(password);
+        console.log(newPassword);
+        console.log(nameUpdate);
+        if (e.target.value === "") {
+            e.target.setCustomValidity("Please fill in the marked fields");
+        } else if (password === newPassword) {
+            e.target.setCustomValidity(
+                "Your new password cannot be the same as your old password."
+            );
+        } else {
+            e.target.setCustomValidity("");
         }
-        else if (password !== confirmPassword) {
+        if (newPassword !== confirmPassword) {
             e.target.setCustomValidity('Passwords do not match.');
         }
         else {
@@ -86,130 +94,338 @@ const UserInfo = () => {
         }
         return true;
     }
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        //     console.log(nameUpdate);
-        //     console.log(surName);
-        //     console.log(userName);
-        //     console.log(email);
-        //     console.log(password);
-        //     console.log(gender);
-        //     console.log(city);
-        //     axios.post('http://localhost:3100/users/signup', {
-        //         "name":name,
-        //         "surname":surName,
-        //         "userName": userName,
-        //         "email": email,
-        //         "password": password,
-        //         "gender": gender,
-        //         "city": city,
-        //     })
-        //         .then((result) => {
-        //             if (result.status) {
-        //                 alert("User successfully registered")
-        //                 navigate("/login");
-        //             }
-        //         })
-        //         .catch((result) => {
-
-        //             console.log(result);
-        //             setIsLogin(true)
-        //             console.log(islogin)
-        //         })
-
-
-        // /////////
-
-        //     console.log(email);
+    function InvalidMsgConfirmPassword1(e) {
+        console.log("password confrim passwrod")
+        console.log(password)
+        console.log(newPassword)
+        if (confirmPassword !== newPassword) {
+            e.target.setCustomValidity('Passwords do not match.');
+        }
+        else {
+            e.target.setCustomValidity('');
+        }
+        return true;
     }
-    return (
-        <div className='App'>
-            <Menu isLogin={localStorage.getItem("token") ? true : false} />
-            <div className='editpng'></div>
+    // function InvalidMsgPassword(e) {
+    //     console.log(password)
+    //     if (e.target.value === '') {
+    //         e.target.setCustomValidity('Please fill in the marked fields');
+    //     }
+    //     else if (e.target.validity.patternMismatch) {
+    //         e.target.setCustomValidity('Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters');
+    //     }
+    //     else if (password === newPassword) {
+    //         e.target.setCustomValidity('');
+    //     }
+    //     return true;
+    // }
+    // function InvalidMsgConfirmPassword(e) {
+    //     console.log("password confrim passwrod")
+    //     console.log(password)
+    //     console.log(newPassword)
+    //     if (e.target.value === '') {
+    //         e.target.setCustomValidity('Please fill in the marked fields');
+    //     }
+    //     else if (password !== newPassword) {
+    //         e.target.setCustomValidity('Passwords do not match.');
+    //     }
+    //     else {
+    //         e.target.setCustomValidity('');
+    //     }
+    //     return true;
+    // }
+    const handleSubmit = async (e) => {
+        console.log(nameUpdate);
+        console.log(surNameUpdate);
+        console.log(userNameUpdate);
+        console.log(emailUpdate);
+        console.log(genderUpdate);
+        console.log(cityUpdate);
+        e.preventDefault();
+        let alertMessage = '';
 
-            <div className='editicon'>
+        // let token = document.cookie
+        // console.log('token:',JSON.stringify(token));
+        if (
+            JSON.parse(localStorage.getItem("auth")).user.name !== nameUpdate ||
+            JSON.parse(localStorage.getItem("auth")).user.surname !== surNameUpdate ||
+            JSON.parse(localStorage.getItem("auth")).user.userName !== userNameUpdate ||
+            JSON.parse(localStorage.getItem("auth")).user.email !== emailUpdate ||
+            JSON.parse(localStorage.getItem("auth")).user.gender !== genderUpdate ||
+            JSON.parse(localStorage.getItem("auth")).user.city !== cityUpdate
+        ) {
+            await axios.post('http://localhost:3100/users/userinfo', {
+                name: nameUpdate,
+                surname: surNameUpdate,
+                userName: userNameUpdate,
+                email: emailUpdate,
+                gender: genderUpdate,
+                city: cityUpdate,
+            },
+                {
+                    headers: {
+                        authorization: localStorage.getItem("token"),
+                    },
+                }
+
+
+
+
+            ).then((result) => {
+
+                if (result.data.token) {
+                    localStorage.removeItem('token');
+                    localStorage.setItem('token', result.data.token);
+                    localStorage.removeItem('auth');
+                    let object = {
+                        user: {
+                            name: nameUpdate,
+                            surname: surNameUpdate,
+                            userName: userNameUpdate,
+                            email: emailUpdate,
+                            gender: genderUpdate,
+                            city: cityUpdate
+                        }
+
+                    }
+                    localStorage.setItem('auth', JSON.stringify(object));
+
+                }
+
+                console.log(result);
+                if (result.status) {
+                    alertMessage += 'User informations succesfully updated';
+                    navigate('/userinfo')
+
+                }
+            })
+                .catch((result) => {
+                    alertMessage += 'user informations not updated'
+                    console.log(result);
+                    setIsLogin(true)
+                    console.log(islogin)
+                })
+
+        }
+        console.log(userNameUpdate)
+        alert(alertMessage);
+    }
+    const handleSubmitPass = async (e) => {
+        let alertMessage='';
+        if(document.getElementById('exampleInputNewPassword').value.length>=8){
+            console.log('Log 1')
+            if(localStorage.getItem('token')){
+                console.log('Log 2')
+                await axios.put('http://localhost:3100/users/passwordUpdate',
+                {   email:emailUpdate,
+                    oldPassword:password,
+                    newPassword:newPassword,
+                    
+                },
+                {
+                    headers:{
+                        authorization:localStorage.getItem('token'),
+                    },
+                },
+                
+                ).then((result)=>{
+                    console.log('Log 3')
+                    if(result.status){
+                        console.log('Log 4')
+                        console.log(result.status);
+                        alertMessage+='Password updated succesfully';
+                        navigate('/userInfo');
+                    }
+                })
+                .catch((result)=>{
+                    console.log('Log 5')
+                    console.log('Result:',result)
+                    alertMessage='Password update not succesfully';
+                    setIsLogin(true);
+                })
+
+                 alert(alertMessage);
+            }
+
+        }
+
+
+    }
+
+    return (
+
+        <div className='App'>
+            <Menu isLogin={true} />
+            <div className='Pass'>
+                <h3>
+                    Şifre Güncelleme
+                </h3>
+                <form onSubmit={handleSubmitPass}>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputOldPassword">Old Password</label>
+                        <input
+                            onChange={(e) => setPassword(e.target.value)}
+                            onInput={JSON.parse(localStorage.getItem("auth")).user.email !== emailUpdate ? null : InvalidMsgPassword}
+                            onInvalidCapture={InvalidMsgPassword}
+                            value={password}
+                            type={controlVisible ? "password" : "text"}
+                            className="form-control"
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                            id="exampleInputOldPassword"
+                            placeholder="Enter your password"
+                        />
+                        <div
+                            className="eyeIcon"
+                            style={{ left: "90%", position: "relative", top: "-25px" }}
+                            type="button"
+                            onClick={() => setControlVisible(!controlVisible)}
+                        >
+                            <img src={eyeIcon} alt="" />
+                        </div>
+                    </div>
+                    <div className="form-group"
+                        style={{ position: "relative", top: "-20px" }}
+                    >
+                        <label htmlFor="exampleInputNewPassword">New Password</label>
+                        <input
+                            value={newPassword}
+                            onInput={
+                                JSON.parse(localStorage.getItem("auth")).user.emailUpdate !== emailUpdate ? null : InvalidMsgConfirmPassword
+                            }
+                            onInvalidCapture={InvalidMsgConfirmPassword}
+                            onChange={(e) => setNewPassword(e.target.value)}
+                            type={controlVisibleNewPass ? "password" : "text"}
+                            className="form-control"
+                            id="exampleInputNewPassword"
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                            placeholder="Enter your new password"
+                        />
+                        <div
+                            className="eyeIcon"
+                            style={{ left: "90%", position: "relative", top: "-25px" }}
+                            type="button"
+                            onClick={() => setControlVisibleNewPass(!controlVisibleNewPass)}
+                        >
+                            <img src={eyeIcon} alt="" />
+                        </div>
+                    </div>
+                    <div className="form-group"
+                        style={{ position: "relative", top: "-40px" }}
+                    >
+                        <label htmlFor="exampleInputConfirmPassword">Confirm Password</label>
+                        <input
+                            value={confirmPassword}
+                            onInput={InvalidMsgConfirmPassword1}
+                            onInvalidCapture={InvalidMsgConfirmPassword1}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            type={controlVisibleConfirm ? "password" : "text"}
+                            className="form-control"
+                            id="exampleInputConfirmPassword"
+
+                            placeholder="Confirm your password"
+                        />
+                        <div
+                            className="eyeIcon"
+                            style={{ left: "90%", position: "relative", top: "-25px" }}
+                            type="button"
+                            onClick={() => setControlVisibleConfirm(!controlVisibleConfirm)}
+                        >
+                            <img src={eyeIcon} alt="" />
+                        </div>
+                    </div>
+
+                    <div style={{ marginTop: '-10px', }} className='buttonLayout'>
+                        <button type='submit' className='submitButton'>Şifreyi Güncelle</button>
+                    </div>
+                </form>
 
             </div>
 
 
 
-            <div className='Edit bg-danger ' id='signup'>
 
-                <h3>User Info</h3>
+
+            <div className='Edit bg-danger ' id='edit'>
+
+                <h3>Kişisel Bilgiler</h3>
 
 
 
                 <div className='form'>
                     <form onSubmit={handleSubmit}>
-                        <div class="form-group">
-                            <label for="exampleInputName">Ad</label>
-                            <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-                            <input onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen adınızı giriniz.")} value={nameUpdate} onChange={(e) => setNameUpdate(e.target.value)} required type="text" class="form-control" id="exampleInputName" aria-describedby="nameHelp" placeholder="Lütfen Adınızı giriniz" />
+                        <div className="form-group">
+                            <label htmlFor="exampleInputName">Ad</label>
+                            <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
+                            <input
+                                onInput={(e) => e.target.setCustomValidity("")}
+                                onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen adınızı giriniz.")}
+                                value={nameUpdate} onChange={(e) => setnameUpdate(e.target.value)}
+                                required type="text" className="form-control" id="exampleInputName"
+                                aria-describedby="nameUpdateHelp" placeholder="Lütfen Adınızı giriniz" />
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputSurname">Soyad</label>
-                            <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-                            <input onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen soyadınızı giriniz.")} value={surNameUpdate} onChange={(e) => setSurnameUpdate(e.target.value)} required type="text" class="form-control" id="exampleInputSurname" aria-describedby="surnameHelp" placeholder="Lütfen Soyadınızı giriniz" />
+                        <div className="form-group">
+                            <label htmlFor="exampleInputSurname">Soyad</label>
+                            <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
+                            <input onInput={(e) => e.target.setCustomValidity("")}
+                                onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen soyadınızı giriniz.")}
+                                value={surNameUpdate} onChange={(e) => setsurnameUpdate(e.target.value)} required type="text"
+                                className="form-control" id="exampleInputSurname" aria-describedby="surNameUpdateHelp" placeholder="Lütfen Soyadınızı giriniz" />
                         </div>
 
-                        <div class="form-group">
-                            <label for="exampleInputUserName1">Username</label>
-                            <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-                            <input onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen kullanıcı adınızı giriniz")} value={userNameUpdate} onChange={(e) => setUserNameUpdate(e.target.value)} required type="name" class="form-control" id="exampleInputUserName1" aria-describedby="emailHelp" placeholder="Enter your username" />
+                        <div className="form-group">
+                            <label htmlFor="exampleInputUserName1">Username</label>
+                            <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
+                            <input onInput={(e) => e.target.setCustomValidity("")}
+                                onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen kullanıcı adınızı giriniz")}
+                                value={userNameUpdate} onChange={(e) => setuserNameUpdate(e.target.value)}
+                                required type="name" className="form-control" id="exampleInputUserName1"
+                                aria-describedby="userNameUpdateHelp" placeholder="Lütfen kullanıcı adınızı giriniz." />
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-                            <input onInput={InvalidMsg} onInvalidCapture={InvalidMsg} value={emailUpdate} onChange={(e) => setEmailUpdate(e.target.value)} required type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Lütfen E-mail adresinizi giriniz" />
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">Email address</label>
+                            <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
+                            <input
+                                onInput={InvalidMsg} onInvalidCapture={InvalidMsg}
+                                value={emailUpdate} onChange={(e) => setemailUpdate(e.target.value)}
+                                required type="email" className="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="Lütfen E-mail adresinizi giriniz" />
                         </div>
-                        <div class="form-group">
-                            <label for="sel1">Choose Gender</label>
-                            <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-                            <select onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen cinsiyetinizi seçiniz")} value={genderUpdate} onChange={(e) => setgenderUpdate(e.target.value)} required class="form-control" id="sel1" name='sellist' >
+                        <div className="form-group">
+                            <label htmlFor="sel1">Choose Gender</label>
+                            <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
+                            <select
+                                onInput={(e) => e.target.setCustomValidity("")}
+                                onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen cinsiyetinizi seçiniz")}
+                                value={genderUpdate} onChange={(e) => setgenderUpdate(e.target.value)}
+                                required className="form-control" id="sel1" name='sellist' >
                                 <option placeholder='Lütfen cinsiyetinizi seçiniz'></option>
                                 <option>Kadın</option>
                                 <option>Erkek</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="sel1">Select City</label>
-                            <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-                            <select onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Please Choose city")} value={cityUpdate} onChange={(e) => setCityUpdate(e.target.value)} required class="form-control" id="sel1">
+                        <div className="form-group">
+                            <label htmlFor="sel2">Select City</label>
+                            <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
+                            <select
+                                onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Please Choose city")}
+                                value={cityUpdate} onChange={(e) => setcityUpdate(e.target.value)}
+                                required className="form-control" id="sel2">
                                 <option></option>
                                 <option>İstanbul</option>
                                 <option>İzmir</option>
                                 <option>Ankara</option>
                                 <option>Kocaeli</option>
                                 <option>Antalya</option>
-                                {/* {cityList.map((item) => {
-                                    return (
-                                        <option>{item}</option>
-                                    )
-                                })} */}
+
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-                            <input onChange={(e) => setPassword(e.target.value)} onInput={InvalidMsgPassword} onInvalidCapture={InvalidMsgPassword} value={password} required type={controlVisible ? "password" : "text"} class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" id="exampleInputPassword1" placeholder="Enter your password" />
-                            <div className='eyeIcon' style={{ left: "90%", position: 'relative', top: "-30px" }} type='button' onClick={() => setControlVisible(!controlVisible)}>
-                                <img src={eyeIcon} alt="" />
-                            </div>
-                        </div>
-                        <div class="form-group" style={{ position: "relative", top: "-20px" }}>
-                            <label for="exampleInputPassword1">Confirm your Password</label>
-                            <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-                            <input value={confirmPassword} onInput={InvalidMsgConfirmPassword} onInvalidCapture={InvalidMsgConfirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required type={controlVisibleConfirm ? "password" : "text"} class="form-control" id="exampleInputPassword1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Confirm your password" />
-                            <div className='eyeIcon' style={{ left: "90%", position: 'relative', top: "-30px" }} type='button' onClick={() => setControlVisibleConfirm(!controlVisibleConfirm)}>
-                                <img src={eyeIcon} alt="" />
-                            </div>
-                        </div>
+
                         {/* <div style={{ display: islogin ? 'flex' : 'none' }} className='wrongSignUp'>
                             <img style={{ height: "20px" }} src={Warning} alt="" />
                             <p style={{ marginLeft: "7px" }}>User name or email existing</p>
                         </div> */}
-                        <div className='buttonLayout'>
-                            <button type='submit' className='submitButton'>Updated</button>
+                        <div style={{ paddingTop: '30px', }} className='buttonLayout'>
+                            <button className='submitButton'>Güncelle</button>
                         </div>
                     </form>
                 </div>

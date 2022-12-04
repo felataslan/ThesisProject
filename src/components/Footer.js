@@ -20,7 +20,7 @@ export default function App() {
             floating
             className='m-1'
             style={{ backgroundColor: '#55acee' }}
-            href='#!'
+            href='https://twitter.com/felat_aslan'
             role='button'
           >
             <BsTwitter/>
@@ -32,6 +32,7 @@ export default function App() {
             className='m-1'
             style={{ backgroundColor: '#ac2bac' }}
             href='https://www.instagram.com/felataslan/'
+            target='_blank'
             role='button'
           >
             <BsInstagram/>
@@ -42,6 +43,7 @@ export default function App() {
             className='m-1'
             style={{ backgroundColor: '#0082ca' }}
             href='https://www.linkedin.com/in/felat-aslan-53217a1a4/'
+            target='_blank'
             role='button'
           >
             <BsLinkedin/>
@@ -52,6 +54,7 @@ export default function App() {
             className='m-1'
             style={{ backgroundColor: '#333333' }}
             href='https://github.com/felataslan'
+            target='_blank'
             role='button'
           >
             <BsGithub/>
