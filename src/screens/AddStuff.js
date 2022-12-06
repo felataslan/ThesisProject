@@ -1,16 +1,20 @@
 import React from 'react'
 import Menu from '../components/Menu'
+import "../style/addStuff.scss"
+import CreateProduct from '../components/createProducts'
+import Footer from '../components/Footer'
+
 
 const AddStuff = () => {
-
-
 
   return (
     <div>
         <Menu isLogin={localStorage.getItem("token")? true:false}/>
 
-          <h1>AddStuff Page</h1>  
+          <CreateProduct />
+        
 
+          <Footer/>
     </div>
   )
 }

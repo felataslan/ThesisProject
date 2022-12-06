@@ -1,0 +1,81 @@
+%layout-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+$width-container: 100%;
+$length: 50px;
+
+
+
+.createSurveyContainer {
+    width: $width-container;
+    height: auto;
+    @extend %layout-center;
+    margin-top: 100px;
+
+    .createSurvey {
+        width: 60%;
+        height: auto;
+        background-color: #dc3545;
+        border-radius: 15px;
+
+    }
+
+    .questionInput {
+        width: 90%;
+        height: 100%;
+        margin-top: $length;
+        padding-left: 10%;
+    }
+
+    .createButtonContainer {
+        width: $width-container;
+        height: $length;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px;
+
+        .createButton {
+            position:relative;
+            background-color:rgb(140, 10, 10);
+            border: 1px solid #F5DCD6;
+            box-shadow: 0px 4px 24px rgb(140, 10, 10);
+            border-radius: 40px;
+            padding-left: 50px;
+            padding-right: 50px;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 24px;
+            /* identical to box height */
+            top: 80px;
+            text-align: center;
+            color: #FFFFFF;
+        }
+    }
+
+}
+
+
+
+.questionInputStyle {
+    background-color: white;
+    margin-top: 5px;
+    border-radius: 15px;
+}
+ h2{
+    margin-top: 40px;
+    text-align: center;
+ }
+// .questionInputStyle::placeholder{
+//     color: #000000;
+
+// }
+
+Footer{
+    position: relative;
+    top: 200px;
+}
