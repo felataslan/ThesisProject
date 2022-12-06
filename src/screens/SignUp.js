@@ -178,11 +178,6 @@ const SignUp =()=> {
                                 <option>Ankara</option>
                                 <option>Kocaeli</option>
                                 <option>Antalya</option>
-                                {/* {cityList.map((item) => {
-                                    return (
-                                        <option>{item}</option>
-                                    )
-                                })} */}
                             </select>
                         </div>
                         <div class="form-group">
