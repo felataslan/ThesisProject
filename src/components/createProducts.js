@@ -1,21 +1,21 @@
 import React, { useState } from 'react'
 import "../style/addStuff.scss"
 import axios from 'axios'
-import {useNavigate}  from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 function CreateSurveyComponenet() {
 
     //   const location=useLocation()
-    // const [photoProduct, setphotoProduct] = useState("");
+    const [photoProduct, setphotoProduct] = useState("");
     const [category, setCategory] = useState("");
     const [productName, setProductName] = useState("");
     const [description, setDescription] = useState("");
     const [phone, setPhone] = useState("");
     const [price, setPrice] = useState("");
-    const navigate=useNavigate();
+    const navigate = useNavigate();
 
-    let alertMessage='';
+    let alertMessage = '';
 
 
 
@@ -30,57 +30,81 @@ function CreateSurveyComponenet() {
         return true;
     }
 
-    const handleSubmit = (e) => {
+
+    const onFileUpload = (e) => {
+        console.log(e.target.files);
+        console.log(e.target)
+        if (e.target && e.target.files[0]) {
+            setphotoProduct(e.target.files[0])
+            
+
+        }
+
+    }
+
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
-        if(localStorage.getItem('token')){
-            axios.post('http://localhost:3100/products/createproduct',
-        {
-            // photoFile:photoProduct,
-            category:category,
-            productName:productName,
-            description:description,
-            phone:phone,
-            price:price,
-        },
-        {
-            headers:{
-                authorization:localStorage.getItem('token'),
-            },
-        }
-        ).then((result)=>{
+        const formdata = new FormData();
+        formdata.append('image', photoProduct)
+        formdata.append('category', category)
+        formdata.append('productName',productName)
+        formdata.append('description',description)
+        formdata.append('phone',phone)
+        formdata.append('price',price)
+
+        console.log(formdata)
+
+
+        if (localStorage.getItem('token')) {
+            await axios.post('http://localhost:3100/products/createproduct',
+                formdata,
+                {
+                    headers: {
+                        authorization: localStorage.getItem('token'),
+                    },
+                },
+
+            ).then((result) => {
                 console.log(result)
-                if(result.status){
-                    alertMessage+='Ürün başarıyla oluşturuldu'
+                if (result.status === 201) {
+                    alertMessage = 'Ürün başariyla oluşturuldu'
                     navigate('/listStuff')
 
                 }
-        }).catch((result)=>{
-            console.log(result);
-            alertMessage='Ürün oluşturulamadı'
-        })
+            }).catch((result) => {
+                console.log(result);
+                alertMessage = 'Ürün oluşturulamadi'
+            })
 
-        }else{
+        } else {
             navigate('/login')
         }
         alert(alertMessage)
     }
+
     return (
         <div>
             <div className='createSurveyContainer'>
                 <div className='createSurvey'>
                     <h2> Ürün Ekle</h2>
-                    <div className='questionInput'>
-                        <form onSubmit={handleSubmit}>
-                            {/* <div className="form-group">
+                    <div className='questionInput' >
+                        <form onSubmit={handleSubmit} encType='multipart/form-data'>
+                            <div className="form-group">
                                 <label htmlFor="exampleInputEmail1" style={{ fontSize: "16px" }}>Ürün Fotoğrafı</label>
                                 <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
-                                <input value={photoProduct} onChange={(e) => setphotoProduct(e.target.value)} onInput={InvalidMsg} onInvalidCapture={InvalidMsg} required style={{ marginBottom: "0px" }} type="file" className="form-control questionInputStyle" id="exampleInputEmail1"  />
-                            </div> */}
+                                <input type="file" name='image' onChange={onFileUpload} onInput={InvalidMsg} onInvalidCapture={InvalidMsg} required style={{ marginBottom: "0px" }} className="form-control questionInputStyle" id="exampleInputEmail1" />
+                            </div>
                             <div className="form-group">
-                                <label htmlFor="exampleInputEmail2" style={{ fontSize: "16px" }}>Ürün Kategorisi</label>
+                                <label htmlFor="category">Kategori</label>
                                 <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
-                                <input value={category} onChange={(e) => setCategory(e.target.value)} onInput={InvalidMsg} onInvalidCapture={InvalidMsg} required style={{ marginBottom: "0px" }} type="text" className="form-control questionInputStyle" id="exampleInputEmail2" placeholder="Lütfen Ürün kategorisini seçiniz" />
+                                <select value={category} name='category' onInput={InvalidMsg} onInvalidCapture={InvalidMsg} onChange={(e) => setCategory(e.target.value)} required className="form-control" id="category">
+                                    <option >Lütfen Ürün kategorinizi seçiniz</option>
+                                    <option>Ev Eşyası</option>
+                                    <option>Takı</option>
+                                    <option>Teknolojik Aletler</option>
+                                </select>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail3" style={{ fontSize: "16px" }}>Ürün adı</label>
@@ -95,12 +119,12 @@ function CreateSurveyComponenet() {
                             <div className="form-group">
                                 <label htmlFor="phone" style={{ fontSize: "16px" }}>Telefon</label>
                                 <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
-                                <input value={phone} onChange={(e) => setPhone(e.target.value)} onInput={InvalidMsg} onInvalidCapture={InvalidMsg} required type="tel" className="form-control questionInputStyle" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}" placeholder="Lütfen Telefon Numaranızı giriniz. Örnek(524-024-24-24)"/>
+                                <input value={phone} onChange={(e) => setPhone(e.target.value)} onInput={InvalidMsg} onInvalidCapture={InvalidMsg} required type="tel" className="form-control questionInputStyle" id="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{2}[0-9]{2}" placeholder="Lütfen Telefon Numaranızı giriniz. Örnek(524-024-24-24)" />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="price" style={{ fontSize: "16px" }}>Fiyat</label>
                                 <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
-                                <input value={price} onChange={(e) => setPrice(e.target.value)} onInput={InvalidMsg} onInvalidCapture={InvalidMsg} required type="number" className="form-control questionInputStyle" id="price"  placeholder="Lütfen Ürün fiyatını giriniz " />
+                                <input value={price} onChange={(e) => setPrice(e.target.value)} onInput={InvalidMsg} onInvalidCapture={InvalidMsg} required type="number" className="form-control questionInputStyle" id="price" placeholder="Lütfen Ürün fiyatını giriniz " />
                             </div>
 
 

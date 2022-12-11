@@ -59,7 +59,7 @@ function Login() {
           document.cookie=result.data.token
           localStorage.setItem('token',result.data.token)
           localStorage.setItem('auth',JSON.stringify(result.data))
-          console.log(JSON.stringify(result.data) + "Login 64 Çalıştı.")
+          console.log(JSON.stringify(result.data) + "Login 64 Çalişti.")
           navigate("/")
 
         }
