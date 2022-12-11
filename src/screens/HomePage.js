@@ -15,7 +15,7 @@ import Telefon from '../tecnology/telefon.png'
 const HomePage = () => {
   return (
     <div style={{fontSize:'16px'}}>
-      <Menu  isLogin={ true} />
+      <Menu  isLogin={ localStorage.getItem('auth')? true : false} />
       <div id='jewerly' className='container' >
         <h4 style={{textAlign:'center'}}>Ev Eşyaları</h4>
         <div className='row' >

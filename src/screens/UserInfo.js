@@ -211,40 +211,41 @@ const UserInfo = () => {
         alert(alertMessage);
     }
     const handleSubmitPass = async (e) => {
-        let alertMessage='';
-        if(document.getElementById('exampleInputNewPassword').value.length>=8){
+        let alertMessage = '';
+        if (document.getElementById('exampleInputNewPassword').value.length >= 8) {
             console.log('Log 1')
-            if(localStorage.getItem('token')){
+            if (localStorage.getItem('token')) {
                 console.log('Log 2')
                 await axios.put('http://localhost:3100/users/passwordUpdate',
-                {   email:emailUpdate,
-                    oldPassword:password,
-                    newPassword:newPassword,
-                    
-                },
-                {
-                    headers:{
-                        authorization:localStorage.getItem('token'),
+                    {
+                        email: emailUpdate,
+                        oldPassword: password,
+                        newPassword: newPassword,
+
                     },
-                },
-                
-                ).then((result)=>{
+                    {
+                        headers: {
+                            authorization: localStorage.getItem('token'),
+                        },
+                    },
+
+                ).then((result) => {
                     console.log('Log 3')
-                    if(result.status){
+                    if (result.status) {
                         console.log('Log 4')
                         console.log(result.status);
-                        alertMessage+='Password updated succesfully';
+                        alertMessage += 'Password updated succesfully';
                         navigate('/userInfo');
                     }
                 })
-                .catch((result)=>{
-                    console.log('Log 5')
-                    console.log('Result:',result)
-                    alertMessage='Password update not succesfully';
-                    setIsLogin(true);
-                })
+                    .catch((result) => {
+                        console.log('Log 5')
+                        console.log('Result:', result)
+                        alertMessage = 'Password update not succesfully';
+                        setIsLogin(true);
+                    })
 
-                 alert(alertMessage);
+                alert(alertMessage);
             }
 
         }
@@ -255,7 +256,7 @@ const UserInfo = () => {
     return (
 
         <div className='App'>
-            <Menu isLogin={true} />
+            <Menu isLogin={localStorage.getItem("token") ? true : false} />
             <div className='Pass'>
                 <h3>
                     Şifre Güncelleme
