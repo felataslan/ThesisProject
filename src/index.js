@@ -16,7 +16,6 @@ import Furniture from './screens/Furnitures';
 import Tecnology from './screens/Tecnology';
 import Profile from './screens/Profile';
 import AddStuff from './screens/AddStuff';
-import ListStuff from './screens/ListStuff';
 import UserInfo from './screens/UserInfo';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -32,7 +31,6 @@ root.render(
       <Route path='/tecnology' element={<Tecnology/>}/>
       <Route path='/profile' element={<Profile/>}/>
       <Route path='/addStuff' element={<AddStuff/>}/>
-      <Route path='/listStuff' element={<ListStuff/>}/>
       <Route path='/userInfo' element={<UserInfo/>}/>
 
 

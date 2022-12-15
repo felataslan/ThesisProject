@@ -106,34 +106,6 @@ const UserInfo = () => {
         }
         return true;
     }
-    // function InvalidMsgPassword(e) {
-    //     console.log(password)
-    //     if (e.target.value === '') {
-    //         e.target.setCustomValidity('Please fill in the marked fields');
-    //     }
-    //     else if (e.target.validity.patternMismatch) {
-    //         e.target.setCustomValidity('Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters');
-    //     }
-    //     else if (password === newPassword) {
-    //         e.target.setCustomValidity('');
-    //     }
-    //     return true;
-    // }
-    // function InvalidMsgConfirmPassword(e) {
-    //     console.log("password confrim passwrod")
-    //     console.log(password)
-    //     console.log(newPassword)
-    //     if (e.target.value === '') {
-    //         e.target.setCustomValidity('Please fill in the marked fields');
-    //     }
-    //     else if (password !== newPassword) {
-    //         e.target.setCustomValidity('Passwords do not match.');
-    //     }
-    //     else {
-    //         e.target.setCustomValidity('');
-    //     }
-    //     return true;
-    // }
     const handleSubmit = async (e) => {
         console.log(nameUpdate);
         console.log(surNameUpdate);

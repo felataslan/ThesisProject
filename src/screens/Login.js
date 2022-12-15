@@ -46,9 +46,8 @@ function Login() {
     return true;
   }
   const handleSubmit = (e) => {
+
     e.preventDefault();
-    console.log(email)
-    console.log(password)
     axios.post('http://localhost:3100/users/login', {
       "email": email,
       "password": password,
@@ -56,10 +55,14 @@ function Login() {
       .then((result) => {
         console.log(result)
         if (result.status === 200) {
-          document.cookie=result.data.token
-          localStorage.setItem('token',result.data.token)
+          
+          localStorage.setItem('token',result.data.token,{
+            httpOnly:true,
+            maxAge:1000*60*60*24,
+
+          })
+
           localStorage.setItem('auth',JSON.stringify(result.data))
-          console.log(JSON.stringify(result.data) + "Login 64 Çalişti.")
           navigate("/")
 
         }
