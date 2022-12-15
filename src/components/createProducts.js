@@ -45,7 +45,6 @@ function CreateSurveyComponenet() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
         const formdata = new FormData();
         formdata.append('image', photoProduct)
         formdata.append('category', category)
@@ -58,7 +57,7 @@ function CreateSurveyComponenet() {
 
 
         if (localStorage.getItem('token')) {
-            await axios.post('http://localhost:3100/products/createproduct',
+            await axios.post('http://localhost:3100/products/product',
                 formdata,
                 {
                     headers: {
@@ -69,13 +68,13 @@ function CreateSurveyComponenet() {
             ).then((result) => {
                 console.log(result)
                 if (result.status === 201) {
-                    alertMessage = 'Ürün başariyla oluşturuldu'
-                    navigate('/listStuff')
+                    alertMessage = result.data.message
+                    navigate('/profile')
 
                 }
             }).catch((result) => {
                 console.log(result);
-                alertMessage = 'Ürün oluşturulamadi'
+                alertMessage = result.data.message
             })
 
         } else {

@@ -134,44 +134,44 @@ const SignUp =()=> {
 
                 <div className='form'>
                     <form onSubmit={handleSubmit}>
-                    <div class="form-group">
-                            <label for="exampleInputName">Ad</label>
-                            <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
+                    <div className="form-group">
+                            <label htmlFor="exampleInputName">Ad</label>
+                            <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
                             <input 
                             onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen adınızı giriniz.")}  
                             value={name} onChange={(e) => setName(e.target.value)}  
-                            required type="text" class="form-control" id="exampleInputName" 
+                            required type="text" className="form-control" id="exampleInputName" 
                             aria-describedby="nameHelp" placeholder="Lütfen Adınızı giriniz" />
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputSurname">Soyad</label>
-                            <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-                            <input onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen soyadınızı giriniz.")} value={surName} onChange={(e) => setSurname(e.target.value)}  required type="text" class="form-control" id="exampleInputSurname" aria-describedby="surnameHelp" placeholder="Lütfen Soyadınızı giriniz" />
+                        <div className="form-group">
+                            <label htmlFor="exampleInputSurname">Soyad</label>
+                            <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
+                            <input onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen soyadınızı giriniz.")} value={surName} onChange={(e) => setSurname(e.target.value)}  required type="text" className="form-control" id="exampleInputSurname" aria-describedby="surnameHelp" placeholder="Lütfen Soyadınızı giriniz" />
                         </div>
 
-                        <div class="form-group">
-                            <label for="exampleInputUserName1">Username</label>
-                            <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-                            <input onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen kullanıcı adınızı giriniz")} value={userName} onChange={(e) => setUserName(e.target.value)} required  type="name" class="form-control" id="exampleInputUserName1" aria-describedby="emailHelp" placeholder="Enter your username" />
+                        <div className="form-group">
+                            <label htmlFor="exampleInputUserName1">Username</label>
+                            <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
+                            <input onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen kullanıcı adınızı giriniz")} value={userName} onChange={(e) => setUserName(e.target.value)} required  type="name" className="form-control" id="exampleInputUserName1" aria-describedby="emailHelp" placeholder="Enter your username" />
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-                            <input onInput={InvalidMsg} onInvalidCapture={InvalidMsg} value={email} onChange={(e) => setEmail(e.target.value)} required type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Lütfen E-mail adresinizi giriniz" />
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">Email address</label>
+                            <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
+                            <input onInput={InvalidMsg} onInvalidCapture={InvalidMsg} value={email} onChange={(e) => setEmail(e.target.value)} required type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Lütfen E-mail adresinizi giriniz" />
                         </div>
-                        <div class="form-group">
-                            <label for="sel1">Choose Gender</label>
-                            <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-                            <select   onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen cinsiyetinizi seçiniz")} value={gender} onChange={(e) => setgender(e.target.value)} required class="form-control" id="sel1" name='sellist' >
+                        <div className="form-group">
+                            <label htmlFor="gender">Choose Gender</label>
+                            <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
+                            <select   onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen cinsiyetinizi seçiniz")} value={gender} onChange={(e) => setgender(e.target.value)} required className="form-control" id="gender" name='sellist' >
                                 <option placeholder='Lütfen cinsiyetinizi seçiniz'></option>
                                 <option>Kadın</option>
                                 <option>Erkek</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="sel1">Select City</label>
-                            <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-                            <select onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Please Choose city")} value={city} onChange={(e) => setCity(e.target.value)} required class="form-control" id="sel1">
+                        <div className="form-group">
+                            <label htmlFor="city">Select City</label>
+                            <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
+                            <select onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Please Choose city")} value={city} onChange={(e) => setCity(e.target.value)} required className="form-control" id="city">
                                 <option></option>
                                 <option>İstanbul</option>
                                 <option>İzmir</option>
@@ -180,18 +180,18 @@ const SignUp =()=> {
                                 <option>Antalya</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-                            <input onChange={(e) => setPassword(e.target.value)} onInput={InvalidMsgPassword} onInvalidCapture={InvalidMsgPassword} value={password} required type={controlVisible ? "password" : "text"} class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" id="exampleInputPassword1" placeholder="Enter your password" />
+                        <div className="form-group">
+                            <label htmlFor="exampleInputPassword">Password</label>
+                            <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
+                            <input onChange={(e) => setPassword(e.target.value)} onInput={InvalidMsgPassword} onInvalidCapture={InvalidMsgPassword} value={password} required type={controlVisible ? "password" : "text"} className="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" id="exampleInputPassword" placeholder="Enter your password" />
                             <div className='eyeIcon' style={{left:"90%", position:'relative', top:"-30px"}} type='button' onClick={() => setControlVisible(!controlVisible)}>
                                 <img src={eyeIcon} alt="" />
                             </div>
                         </div>
-                        <div class="form-group" style={{position:"relative", top:"-20px"}}>
-                            <label for="exampleInputPassword1">Confirm your Password</label>
-                            <span style={{ color: "red", marginLeft: "3px" }} className='form-required'>*</span>
-                            <input value={confirmPassword} onInput={InvalidMsgConfirmPassword} onInvalidCapture={InvalidMsgConfirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required type={controlVisibleConfirm ? "password" : "text"} class="form-control" id="exampleInputPassword1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Confirm your password" />
+                        <div className="form-group" style={{position:"relative", top:"-20px"}}>
+                            <label htmlFor="exampleConfirmPassword">Confirm your Password</label>
+                            <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
+                            <input value={confirmPassword} onInput={InvalidMsgConfirmPassword} onInvalidCapture={InvalidMsgConfirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required type={controlVisibleConfirm ? "password" : "text"} className="form-control" id="exampleConfirmPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Confirm your password" />
                             <div className='eyeIcon' style={{left:"90%", position:'relative', top:"-30px"}} type='button' onClick={() => setControlVisibleConfirm(!controlVisibleConfirm)}>
                                 <img src={eyeIcon} alt="" />
                             </div>

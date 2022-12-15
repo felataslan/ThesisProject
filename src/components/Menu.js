@@ -71,22 +71,6 @@ const Menu = ({isLogin},prop) => {
                       color: "#000000",
                     }}>Profile</Link>
                   </div>
-                  <div className='profileContainer' onClick={() => navigate("/listStuff")} style={{
-                    width: "80%", height: "30px", backgroundColor: "#F5F5F5CC", marginBottom: "10px", display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    borderRadius: "10px"
-                  }}>
-                    <Link className='menuLinkContain' to={"/listStuff"} style={{
-                      fontFamily: 'Inter',
-                      fontStyle: "normal",
-                      fontWeight: "700",
-                      fontSize: "13px",
-                      lineHeight: "21px",
-                      textAlign: "center",
-                      color: "#000000",
-                    }}>Ürün Listem</Link>
-                  </div>
                   <div className='profileContainer' onClick={() => navigate("/addStuff")} style={{
                     width: "80%", height: "30px", backgroundColor: "#F5F5F5CC", marginBottom: "10px", display: "flex",
                     justifyContent: "center",
