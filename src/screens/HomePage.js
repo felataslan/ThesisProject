@@ -12,6 +12,7 @@ import Kupe from '../furniture/kupe.png'
 import Bilgisayar from '../tecnology/bilgisayar.png'
 import Laptop from '../tecnology/laptop.png'
 import Telefon from '../tecnology/telefon.png'
+import 'bootstrap'
 const HomePage = () => {
   return (
     <div style={{fontSize:'16px'}}>
@@ -22,10 +23,10 @@ const HomePage = () => {
               <div className='col-3 card-J'>
                    <Card png={Chair} title='Sandalye' price='200 TL' />
               </div>
-              <div className='col-3 card-J'>
+              <div className='col-3  card-J'>
                     <Card png={Table} title='Masa' price='400 TL' />
               </div>
-              <div className='col-3 card-J'>
+              <div className='col-3  card-J'>
                     <Card png={Carpet} title='Halı' price='300 TL'  />
               </div>
               
