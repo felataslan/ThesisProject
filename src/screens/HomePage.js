@@ -1,78 +1,135 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Menu from '../components/Menu.js'
 import Card from '../components/Cards.js'
 import Footer from '../components/Footer.js'
 import '../style/HomePage.scss'
-import Chair from '../jeverly/chair.png'
-import Table from '../jeverly/table.png'
-import Carpet from '../jeverly/carpet.png'
-import Kolye from '../furniture/kolye.png'
-import Bilezik from '../furniture/bilezik.png'
-import Kupe from '../furniture/kupe.png'
-import Bilgisayar from '../tecnology/bilgisayar.png'
-import Laptop from '../tecnology/laptop.png'
-import Telefon from '../tecnology/telefon.png'
 import 'bootstrap'
+import { useState } from 'react';
+import axios from 'axios'
 const HomePage = () => {
-  return (
-    <div style={{fontSize:'16px'}}>
-      <Menu  isLogin={ localStorage.getItem('auth')? true : false} />
-      <div id='jewerly' className='container' >
-        <h4 style={{textAlign:'center'}}>Ev Eşyaları</h4>
-        <div className='row' >
-              <div className='col-3 card-J'>
-                   <Card png={Chair} title='Sandalye' price='200 TL' />
-              </div>
-              <div className='col-3  card-J'>
-                    <Card png={Table} title='Masa' price='400 TL' />
-              </div>
-              <div className='col-3  card-J'>
-                    <Card png={Carpet} title='Halı' price='300 TL'  />
-              </div>
-              
-        </div>
 
-    </div>
+      window.scrollTo(0, 0);
 
-    <div id='furniture' className='container'>
-    <h4 style={{textAlign:'center'}}>Takılar</h4>
-        <div className='row' >
-              <div className='col-3 card-F'>
-                   <Card png={Kolye} title='Kolye' price='6000 TL' />
-              </div>
-              <div className='col-3 card-F'>
-                    <Card png={Bilezik} title='Bilezik' price='8400 TL' />
-              </div>
-              <div className='col-3 card-F'>
-                    <Card png={Kupe} title='Küpe' price='5300 TL'  />
-              </div>
-              
-        </div>
+      const [tecnology, setTecnology] = useState([]);
+      const [jewerly, setJewerly] = useState([]);
+      const [furniture, setFurniture] = useState([]);
+      
 
-    </div>
+      useEffect(() => {
 
-    <div id='tecnology' className='container'>
+            axios.get('http://localhost:3100/products/product/all', {
+                  
+            }).then((result) => {
+                  console.log('res,', result)
+                  if (result.data) {
+                        const userJewerly = []
+                        const userTecnology = []
+                        const userFurniture = []
+                        result.data.tecnology.map((item) => {
+                              userTecnology.push(item);
+                              return userTecnology;
+                        })
+                        result.data.furniture.map((item) => {
+                              userFurniture.push(item);
+                              return userFurniture;
+                        })
+                        result.data.jewerly.map((item) => {
+                              userJewerly.push(item);
+                              return userJewerly;
+                        })
 
-    <h4 style={{textAlign:'center'}}>Teknolojik Aletler</h4>
-        <div className='row' >
-              <div className='col-3 card-T'>
-                   <Card png={Bilgisayar} title='Kolye' price='6000 TL' />
-              </div>
-              <div className='col-3 card-T'>
-                    <Card png={Laptop} title='Bilezik' price='8400 TL' />
-              </div>
-              <div className='col-3 card-T'>
-                    <Card png={Telefon} title='Küpe' price='5300 TL'  />
-              </div>
-              
-        </div>
+                        console.log('F', userFurniture)
+                        console.log('T', userTecnology)
+                        console.log('J', userJewerly)
 
-    </div>
+                        setTecnology(userTecnology)
+                        setFurniture(userFurniture)
+                        setJewerly(userJewerly)
 
-      <Footer/>
 
-    </div>
-  )
+
+                  }
+            })
+
+
+
+
+      }, [])
+
+
+
+
+
+      return (
+            <div style={{ fontSize: '16px' }}>
+                  <Menu isLogin={localStorage.getItem('auth') ? true : false} />
+
+                  <div className='container'>
+                        <div className='row' id='bghire'>
+                              <h1>HIRE STUFF ' A Hoşgeldiniz</h1>
+                        </div>
+                  </div>
+
+
+
+
+                  <div id='furniture' className='container' >
+                        <h3 style={{ textAlign: 'center' }}>Ev Eşyaları</h3>
+                        <div className='row' >
+                              {furniture && furniture.length > 0 && furniture.map((result, index) => {
+                                    console.log('result', result)
+                                    return (
+
+                                          <div key={index || {}} className='col-sm-12 col-md-6 col-lg-4  card-J' >
+                                                <Card id={result._id} isOwner={false} description={result.description} to='/profile' png={result.url} title={result.productName} price={result.price + '₺'} />
+                                          </div>
+                                    )
+                              })}
+
+
+                        </div>
+
+                  </div>
+
+                  <div id='jewerly' className='container'>
+                        <h3 style={{ textAlign: 'center' }}>Takılar</h3>
+                        <div className='row' >
+                        {jewerly && jewerly.length > 0 && jewerly.map((result, index) => {
+                                    console.log('result', result)
+                                    return (
+
+                                          <div key={index || {}} className='col-sm-12 col-md-6 col-lg-4  card-J' >
+                                                <Card id={result._id} isOwner={false} description={result.description} to='/profile' png={result.url} title={result.productName} price={result.price + '₺'} />
+                                          </div>
+                                    )
+                              })}
+
+                        </div>
+
+                  </div>
+
+                  <div id='tecnology' className='container'>
+
+                        <h3 style={{ textAlign: 'center' }}>Teknolojik Aletler</h3>
+                        <div className='row' >
+                        {tecnology && tecnology.length > 0 && tecnology.map((result, index) => {
+                                    console.log('result', result)
+                                    return (
+
+                                          <div key={index || {}} className='col-sm-12 col-md-6 col-lg-4  card-J' >
+                                                <Card id={result._id} isOwner={false} description={result.description} to='/profile' png={result.url} title={result.productName} price={result.price + '₺'} />
+                                          </div>
+                                    )
+                              })}
+
+                        </div>
+
+                  </div>
+
+                  <Footer />
+
+            </div>
+      )
 }
 
 export default HomePage;

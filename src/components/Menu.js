@@ -6,6 +6,7 @@ import 'react-bootstrap'
 import SignOut from "../image/signOut.png"
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
+import 'bootstrap'
 
 
 const Menu = ({isLogin},prop) => {
@@ -48,7 +49,7 @@ const Menu = ({isLogin},prop) => {
               </div> : 
               <div onClick={() => setControl(!control)} className='UserIcon'>
                 <div style={{
-                  display: control ? "none" : "flex", top: "45px", zIndex: "100", height: "150px", width: "300px",
+                  display: control ? "none" : "flex", top: "45px", zIndex: "2", height: "150px", width: "300px",
                   flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",
