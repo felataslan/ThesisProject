@@ -17,6 +17,8 @@ import Tecnology from './screens/Tecnology';
 import Profile from './screens/Profile';
 import AddStuff from './screens/AddStuff';
 import UserInfo from './screens/UserInfo';
+import ProductInfo from './screens/productInfo';
+import Contact from './screens/contact';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -32,6 +34,8 @@ root.render(
       <Route path='/profile' element={<Profile/>}/>
       <Route path='/addStuff' element={<AddStuff/>}/>
       <Route path='/userInfo' element={<UserInfo/>}/>
+      <Route path='/fillProduct' element={<ProductInfo/>}/>
+      <Route path='/mailer' element={<Contact/>}/>
 
 
 

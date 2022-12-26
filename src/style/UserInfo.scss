@@ -2,87 +2,58 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    //align-items: center
 }
 
 %layout {
     display: flex;
     flex-direction: column;
-    // justify-content: center;
     align-items: center;
 }
 
 
 .Pass {
-    position: absolute;
+    position: relative;
+    z-index: 0;
     background-color: #dc3545;
-    @extend %layout;
     font-size: 16px;
-    right: 5%;
-    width: 40%;
-    height: 380px;
-    top: 180px;
-    border-radius: 10px;
+    height: 420px;
+    top: 30px;
+    border-radius: 20px;
     @media (max-width:765px) {
-        width: 75%;
-        right: 12.5%;
-        display: block;
-        h3{
-            margin-top: 20px;
-            text-align: center;
-            
-        }
-        .form-group{
-            
-            padding-left: 10%;
-            padding-right: 10%;
-        }
-        .submitButton{
-            position: relative;
-            left: 20%;
-        }
-        
+        position: relative;
+        top: -60px;
     }
     .form-group{
         position: relative;
         margin-top: 15px;
-        width:180%;
-        right: 40%;
+        width:80%;
+        left: 10%;
 
-       @media (max-width:1065px) {
-            position: relative;
-            width: auto;
-            left: 0;
-       }
+    }
+    h3 {
+        text-align: center;
+        margin-top: 20px;
+        padding-top: 20px;
+    }
+    .buttonLayout{
+        position: relative;
+        left: 25%;
+        margin-top: 30px;
     }
 
 }
 
 .Edit {
-    
-    width: 40%;
-    height: auto;;
+    position: relative;
+    height: auto;
     border-radius: 20px;
     @extend %layout;
     font-size: 16px;
-    padding-bottom: 50px;
-    position: relative;
-    left: 10%;
-    top: 50px;
+    padding-bottom: 50px; 
+    top: 30px;
     margin-bottom: 150px;
     @media (max-width:765px) {
-        width: 75%;
-        left: 12.5%;
-        display: block;
-        top:490px;
-        .form-group{
-            position: relative;
-            left: 12.5%;
-            
-        }
         .buttonLayout{
-            position: relative;
-            left: 10%;
             margin-top: 30px;
         }
         
@@ -90,7 +61,7 @@
 
     h3 {
         text-align: center;
-        margin-bottom: 40px;
+        margin-top: 40px;
     }
 
 
@@ -103,7 +74,7 @@
 
     }
     .buttonLayout{
-        position: relative;
+        align-items: center;
         margin-top: 30px;
     }
 
@@ -139,9 +110,6 @@
         border-radius: 5px;
         margin-right: 10px;
         @extend %layout-shared;
-        // display: flex;
-        // justify-content: center;
-        // align-items: center;
     }
 }
 

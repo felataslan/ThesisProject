@@ -5,19 +5,7 @@ import Home from './screens/HomePage'
 
 
 const App = () => {
-  // useEffect(() => {
-
-  //   const getData = async () => {
-  //     const response = await axios.get('http://localhost:3100/data')
-
-  //     console.log(response)
-  //     return response;
-  //   }
-
-  //   getData();
-
-  // }, [])
-
+  
   return (
     <div className="App">
       <Home></Home>

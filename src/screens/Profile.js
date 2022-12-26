@@ -5,64 +5,119 @@ import Card from '../components/Cards'
 import { useState } from 'react';
 import '../style/profile.scss'
 import 'bootstrap'
-// import { useNavigate } from "react-router-dom";
-
 import axios from 'axios'
+
 const Profile = () => {
   window.scrollTo(0, 0);
-  // const navigate = useNavigate();
-  const [stuff,setStuff]=useState([]);
+
+  const [stuffs, setStuffs] = useState([]);
   const [tecnology, setTecnology] = useState([]);
   const [jewerly, setJewerly] = useState([]);
   const [furniture, setFurniture] = useState([]);
+  const [isOwner, setisOwner] = useState(false)
 
   useEffect(() => {
 
     axios.get('http://localhost:3100/products/product', {
       headers: {
-        authorization: localStorage.getItem('token')
+        authorization: localStorage.getItem('token') ? localStorage.getItem('token'): ''
       }
-    }).then((result)=>{
-
-      console.log('Result',result.data.data)
-      if(result.data.data && result.data.data.length>0){
-        const userProductData=[]
-        const userJewerly=[]
-        const userTecnology=[]
-        const userFurniture=[]
-        result.data.data.map((item)=>{
-          console.log('item',item)
+    }).then((result) => {
+      
+     
+      if (result.data.user === JSON.parse(localStorage.getItem('auth')).user._id) {
+        setisOwner(true);
+      }
+      if (result.data.data && result.data.data.length > 0) {
+        const userProductData = []
+        const userJewerly = []
+        const userTecnology = []
+        const userFurniture = []
+        result.data.data.map((item) => {
           userProductData.push(item);
-          if(item.category==='Teknolojik Aletler'){
+          if (item.category === 'Teknolojik Aletler') {
             userTecnology.push(item)
           }
-          else if(item.category==='Ev Eşyası'){
+          else if (item.category === 'Ev Eşyası') {
             userFurniture.push(item)
           }
-          else if(item.category==='Takı'){
+          else if (item.category === 'Takı') {
             userJewerly.push(item)
           }
+          return userProductData && userJewerly && userTecnology && userFurniture;
         })
 
-        setStuff(userProductData)
+        console.log(userProductData)
+
+        setStuffs(userProductData)
         setTecnology(userTecnology)
         setFurniture(userFurniture)
         setJewerly(userJewerly)
 
 
+
       }
     })
 
-    // if (!localStorage.getItem("token")) {
-    //   navigate("/login")
-    //  }
+  }, [])
 
+ const deleteProduct = async (stuff)=>{
+      let alertMessage=''
+      console.log(stuff)
+      await axios.post('http://localhost:3100/products/product/delete',{
+        productID:stuff,
+      },
+      {
+        headers:{
+            authorization:localStorage.getItem('token')
+        }
+      }).then((result)=>{
+        console.log(result.data)
 
+        if(result.data.succeded){
+          alertMessage=result.data.message;
+        }
+        axios.get('http://localhost:3100/products/product',{
+          headers:{
+            authorization:localStorage.getItem('token')
+          }
+        }).then((result)=>{
 
+          if (result.data.data && result.data.data.length >= 0) {
+            const newUserProductData = []
+            const newUserJewerly = []
+            const newUserTecnology = []
+            const newUserFurniture = []
+            result.data.data.map((item) => {
+              newUserProductData.push(item);
+              if (item.category === 'Teknolojik Aletler') {
+                newUserTecnology.push(item)
+              }
+              else if (item.category === 'Ev Eşyası') {
+                newUserFurniture.push(item)
+              }
+              else if (item.category === 'Takı') {
+                newUserJewerly.push(item)
+              }
+              return newUserProductData && newUserJewerly && newUserTecnology && newUserFurniture;
+            })
+    
+            console.log(newUserProductData)
+    
+            setStuffs(newUserProductData)
+            setTecnology(newUserTecnology)
+            setFurniture(newUserFurniture)
+            setJewerly(newUserJewerly)
+    
+    
+    
+          }
 
-  },[])
-
-
+        })
+        
+      })
+      alert(alertMessage)
+ }
 
 
 
@@ -79,7 +134,7 @@ const Profile = () => {
 
           <h1>HIRE STUFF</h1>
           <div className='col-3'>
-            <button className='btn mt-5' style={{ color: 'white', backgroundColor: 'rgb(140, 10, 10)' }}>Eklenen ürün: {stuff.length}</button>
+            <button className='btn mt-5' style={{ color: 'white', backgroundColor: 'rgb(140, 10, 10)' }}>Eklenen ürün: {stuffs.length}</button>
 
           </div>
           <div className='col-3'>
@@ -94,17 +149,15 @@ const Profile = () => {
         </div>
 
         <div className='row'>
-          {stuff && stuff.length>0 && stuff.map((result,index)=>{
-            console.log("----------------")
-            console.log(stuff)
+          {stuffs && stuffs.length > 0 && stuffs.map((result, index) => {
             console.log('result',result)
             return(
-            <div className='col-4 mt-5'>
-            <Card to='/profile' png={result.url} title={result.productName} price={result.price+'₺'} />
-          </div>
+              <div    key={index || {}} className='col-lg-4 col-md-6 col-sm-12 mt-5'>
+                <Card id={result._id} click={deleteProduct} isOwner={isOwner} description={result.description} to='/profile' png={result.url} title={result.productName} price={result.price + '₺'} />
+              </div>
             )
           })}
-          
+
         </div>
 
 

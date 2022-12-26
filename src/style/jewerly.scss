@@ -1,30 +1,12 @@
-#jewerly{
-    padding-top:60px;
-    height: auto;
-
-}
-
-#furniture{
-    padding-top: 60px;
-    height: auto;
-}
-
-.card-T{
-    justify-content: center;
-    align-items: center;
-}
-#tecnology{
-    padding-top: 60px;
-    height: auto;
-}
-
-#bghire{
+#bgjewerly{
     z-index: -1;
     position: relative;
     top:30px;
     border-radius: 20px;
-    height: 400px;
+    height: 300px;
     align-items: center;
+
+
     background-color: #dc3545;
     color: white;
     h1{
@@ -33,4 +15,5 @@
         justify-content: center;
         text-shadow: 3px 3px 3px gray;
     }
+    
 }
