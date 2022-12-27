@@ -1,29 +1,25 @@
 import React from 'react';
-import "../style/signup.scss";
+import "../style/signUp.scss";
 import eyeIcon from "../image/eye.png"
 // import Warning from "../image/warning.png"
 import "../style/login.scss";
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Menu from '../components/Menu';
-import Footer from '../components/Footer'
+import Menu from '../components/menu.js';
+import Footer from '../components/footer.js'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const SignUp =()=> {
     const navigate = useNavigate();
-    // const [countryId, setCountryId] = useState(0);
-    // const [countryOption, setcountryOption] = useState(0);
     const [controlVisible, setControlVisible] = useState(true);
     const [controlVisibleConfirm, setControlVisibleConfirm] = useState(true);
-    // const [control, setControl] = useState(true);
-    // const [vectorControl, setvectorControl] = useState(false);
     const [name, setName] = useState("");
     const [surName,setSurname]=useState('');
     const [userName,setUserName]=useState('');
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [gender, setgender] = useState("");
+    const [gender, setGender] = useState("");
     const [city, setCity] = useState("");
     // const [country, setCountry] = useState("");
     const [islogin, setIsLogin] = useState(false);
@@ -162,7 +158,7 @@ const SignUp =()=> {
                         <div className="form-group">
                             <label htmlFor="gender">Choose Gender</label>
                             <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
-                            <select   onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen cinsiyetinizi seçiniz")} value={gender} onChange={(e) => setgender(e.target.value)} required className="form-control" id="gender" name='sellist' >
+                            <select   onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen cinsiyetinizi seçiniz")} value={gender} onChange={(e) => setGender(e.target.value)} required className="form-control" id="gender" name='sellist' >
                                 <option placeholder='Lütfen cinsiyetinizi seçiniz'></option>
                                 <option>Kadın</option>
                                 <option>Erkek</option>

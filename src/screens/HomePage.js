@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import Menu from '../components/Menu.js'
-import Card from '../components/Cards.js'
-import Footer from '../components/Footer.js'
-import '../style/HomePage.scss'
+import Menu from '../components/menu.js'
+import Card from '../components/cards.js'
+import Footer from '../components/footer.js'
+import '../style/homePage.scss'
 import 'bootstrap'
 import { useState } from 'react';
 import axios from 'axios'
@@ -80,8 +80,8 @@ const HomePage = () => {
                                     console.log('result', result)
                                     return (
 
-                                          <div key={index || {}} className='col-sm-12 col-md-6 col-lg-4  card-J' >
-                                                <Card id={result._id} isOwner={false} description={result.description} to='/profile' png={result.url} title={result.productName} price={result.price + '₺'} />
+                                          <div key={index || {}} className='col-sm-12 col-md-6 col-lg-4 mt-3  card-J' >
+                                                <Card  id={result._id} isOwner={false} description={result.description} to='/profile' png={result.url} title={result.productName} price={result.price + '₺'} />
                                           </div>
                                     )
                               })}

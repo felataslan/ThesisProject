@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Cards = (prop) => {
   const navigate = useNavigate();
 
-  const sendProductID = async ()=>{
+  const asyncSendProductID = async ()=>{
     if(localStorage.getItem('productid')){
       localStorage.removeItem('productid')
       localStorage.setItem('productid',prop.id)
@@ -33,7 +33,7 @@ const Cards = (prop) => {
             {prop.description}
           </Card.Text>
           <Card.Text>Fiyat: {prop.price}</Card.Text>
-          <Button  onClick={sendProductID}  variant="primary">Bilgi</Button>
+          <Button  onClick={asyncSendProductID}  variant="primary">Bilgi</Button>
           
           <Button variant='danger' type='submit' onClick={(e)=>prop.click(prop.id)} style={{ marginLeft: '90px' ,display:prop.isOwner ? 'inline-block':'none'  }}>İlanı Kaldır</Button>
           

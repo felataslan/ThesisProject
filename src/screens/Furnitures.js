@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import Menu from '../components/Menu'
-import Card from '../components/Cards.js'
+import Menu from '../components/menu.js'
+import Card from '../components/cards.js'
 import 'bootstrap'
 import axios from 'axios'
 import { useState } from 'react';
 import '../style/furniture.scss'
-import Footer from '../components/Footer.js'
+import Footer from '../components/footer.js'
 
 
 
@@ -35,7 +35,7 @@ const Furniture = () => {
 
   }, [])
 
- const handleFormSubmit =  (event) => {
+ const handleFormSubmit =(event) => {
     event.preventDefault();
     const newUserFurnitures=[]
     furnitures.map((item)=>{
@@ -90,7 +90,7 @@ const Furniture = () => {
               console.log('result', result)
               return (
 
-                <div key={index || {}} className='col-sm-12 col-md-6 col-lg-4  card-J' >
+                <div key={index || {}} className='col-sm-12 col-md-6 col-lg-4 mt-3 card-J' >
                   <Card id={result._id}  isOwner={false} description={result.description}  png={result.url} title={result.productName} price={result.price + '₺'} />
                 </div>
               )

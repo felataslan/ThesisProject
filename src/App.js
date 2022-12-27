@@ -1,6 +1,6 @@
 // import axios from 'axios';
 import './App.css';
-import Home from './screens/HomePage'
+import Home from './screens/homePage'
 // import { useEffect } from 'react';
 
 

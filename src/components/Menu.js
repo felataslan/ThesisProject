@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import '../style/Menu.scss'
+import '../style/menu.scss'
 import "bootstrap/dist/css/bootstrap.css";
 import 'react-bootstrap'
 import SignOut from "../image/signOut.png"

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import Menu from '../components/Menu'
-import '../style/ForgetPass.scss'
-import Footer from '../components/Footer'
+import Menu from '../components/menu.js'
+import '../style/forgetPass.scss'
+import Footer from '../components/footer.js'
 import axios from 'axios'
 import 'bootstrap'
 
@@ -23,7 +23,7 @@ const ForgetPass = () => {
         }
         return true;
     }
-    const handleSubmit = async (e) => {
+    const asyncHandleSubmit = async (e) => {
         e.preventDefault();
         await axios.post('http://localhost:3100/users/forget', {
             email: email
@@ -54,7 +54,7 @@ const ForgetPass = () => {
                 <h3 className='continue mt-3'>Şifremi Unuttum</h3>
 
                 <div className='form col-md-12'>
-                    <form onSubmit={handleSubmit}
+                    <form onSubmit={asyncHandleSubmit}
                     >
                         <div className="form-group">
                             <label htmlFor="exampleInputEmail1">E-mail</label>
