@@ -99,7 +99,7 @@ function Login() {
                 <img src={eyeIcon} alt="" />
               </div>
             </div>
-            <div style={{display:islogin? 'flex': 'none'}} className='wrongLogIn'>
+            <div style={{display: islogin ? 'flex': 'none'}} className='wrongLogIn'>
               <img style={{height:"20px"}} src={Warning} alt="" />
               <p style={{marginLeft:"5px"}}>Tekrar Şifre</p>
             </div>
@@ -108,7 +108,7 @@ function Login() {
             </div>
           </form>
           <div className='forgetUsername'>
-          <p>Forget your<Link to={""}>username</Link> or<Link to={""}>password?</Link></p>
+          <p>Forget your<Link to={"/forget"}>username</Link> or<Link to={"/forget"}>password?</Link></p>
           </div>
           <div className='haveAccount'>
             <p>Don't have an account?</p>

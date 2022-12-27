@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Menu from '../components/Menu'
+import Footer from '../components/Footer'
 import 'bootstrap'
 import '../style/contact.scss'
 import axios from 'axios';
@@ -11,29 +12,42 @@ const Contact = () => {
   const [surName, setsurname] = useState('');
   const [description, setDescription] = useState('')
   const [email, setemail] = useState('');
-  const handleSubmit = async () => {
+  const [isSend, setIsSend] = useState(false);
 
-   try {
-    
-    await axios.post('http://localhost:3100/products/product/mail', {
-      name: name,
-      surName: surName,
-      message: description,
-      email: email,
-      emailTo: localStorage.getItem('email'),
-    },
-    ).then((result)=>{
-      console.log(result)
-    }).catch((result)=>{
-      console.log(result)
-      
-    })
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    
-   
-   } catch (error) {
-    console.log("ERR::", error)
-   }
+    try {
+
+      await axios.post('http://localhost:3100/products/product/mail', {
+        name: name,
+        surName: surName,
+        message: description,
+        email: email,
+        emailTo: localStorage.getItem('email'),
+      },
+      ).then((result) => {
+        console.log(result)
+        if (result.data.succeded) {
+          setname('')
+          setsurname('')
+          setemail('');
+          setDescription('')
+          setIsSend(true)
+          setTimeout(() => {
+            setIsSend(false)
+          }, 3000)
+        }
+      }).catch((result) => {
+        console.log(result)
+
+      })
+
+
+
+    } catch (error) {
+      console.log("ERR::", error)
+    }
 
   }
 
@@ -55,6 +69,12 @@ const Contact = () => {
   return (
     <div>
       <Menu isLogin={localStorage.getItem('auth') ? true : false} />
+
+      <div className="col-md-12">
+        <div style={{ display: isSend ? "block" : "none" , position:'relative', top:'30px' }} className="alert alert-success mt-5" id="sendMessage" >
+          E-mail ürün sahibine başarıyla gönderildi. 
+        </div>
+      </div>
 
       <div className='container bg-danger ' id='mail'>
 
@@ -113,6 +133,8 @@ const Contact = () => {
         </div>
 
       </div>
+     
+      <Footer/>
     </div>
   )
 }

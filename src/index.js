@@ -19,6 +19,7 @@ import AddStuff from './screens/AddStuff';
 import UserInfo from './screens/UserInfo';
 import ProductInfo from './screens/productInfo';
 import Contact from './screens/contact';
+import ForgetPass from './screens/ForgetPass';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -36,6 +37,8 @@ root.render(
       <Route path='/userInfo' element={<UserInfo/>}/>
       <Route path='/fillProduct' element={<ProductInfo/>}/>
       <Route path='/mailer' element={<Contact/>}/>
+      <Route path='/forget' element={<ForgetPass/>}/>
+    
 
 
 
