@@ -1,11 +1,11 @@
 import React from 'react';
-import "../style/UserInfo.scss";
+import "../style/userInfo.scss";
 import eyeIcon from "../image/eye.png"
 import 'react-bootstrap'
 // import Warning from "../image/warning.png"
 import { useState } from 'react';
-import Menu from '../components/Menu';
-import Footer from '../components/Footer'
+import Menu from '../components/menu.js';
+import Footer from '../components/footer.js'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import 'bootstrap'
@@ -17,30 +17,30 @@ const UserInfo = () => {
 
     // const [control, setControl] = useState(true);
     // const [vectorControl, setvectorControl] = useState(false);
-    const [nameUpdate, setnameUpdate] = useState(
+    const [nameUpdate, setNameUpdate] = useState(
         localStorage.getItem('auth')
             ? JSON.parse(localStorage.getItem('auth')).user.name
             : null);
-    const [surNameUpdate, setsurnameUpdate] = useState(
+    const [surNameUpdate, setSurNameUpdate] = useState(
         localStorage.getItem('auth')
             ? JSON.parse(localStorage.getItem('auth')).user.surname
             : null);
-    const [userNameUpdate, setuserNameUpdate] = useState(
+    const [userNameUpdate, setUserNameUpdate] = useState(
         localStorage.getItem('auth')
             ? JSON.parse(localStorage.getItem('auth')).user.userName
             : null
     );
-    const [emailUpdate, setemailUpdate] = useState(
+    const [emailUpdate, setEmailUpdate] = useState(
         localStorage.getItem('auth')
             ? JSON.parse(localStorage.getItem('auth')).user.email
             : null
     );
-    const [genderUpdate, setgenderUpdate] = useState(
+    const [genderUpdate, setGenderUpdate] = useState(
         localStorage.getItem('auth')
             ? JSON.parse(localStorage.getItem('auth')).user.gender
             : null
     );
-    const [cityUpdate, setcityUpdate] = useState(
+    const [cityUpdate, setCityUpdate] = useState(
         localStorage.getItem('auth')
             ? JSON.parse(localStorage.getItem('auth')).user.city
             : null
@@ -107,7 +107,7 @@ const UserInfo = () => {
         }
         return true;
     }
-    const handleSubmit = async (e) => {
+    const asyncHandleSubmit = async (e) => {
         console.log(nameUpdate);
         console.log(surNameUpdate);
         console.log(userNameUpdate);
@@ -241,14 +241,14 @@ const UserInfo = () => {
 
 
                             <div className='form'>
-                                <form onSubmit={handleSubmit}>
+                                <form onSubmit={asyncHandleSubmit}>
                                     <div className="form-group">
                                         <label htmlFor="exampleInputName">Ad</label>
                                         <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
                                         <input
                                             onInput={(e) => e.target.setCustomValidity("")}
                                             onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen adınızı giriniz.")}
-                                            value={nameUpdate} onChange={(e) => setnameUpdate(e.target.value)}
+                                            value={nameUpdate} onChange={(e) => setNameUpdate(e.target.value)}
                                             required type="text" className="form-control" id="exampleInputName"
                                             aria-describedby="nameUpdateHelp" placeholder="Lütfen Adınızı giriniz" />
                                     </div>
@@ -257,7 +257,7 @@ const UserInfo = () => {
                                         <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
                                         <input onInput={(e) => e.target.setCustomValidity("")}
                                             onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen soyadınızı giriniz.")}
-                                            value={surNameUpdate} onChange={(e) => setsurnameUpdate(e.target.value)} required type="text"
+                                            value={surNameUpdate} onChange={(e) => setSurNameUpdate(e.target.value)} required type="text"
                                             className="form-control" id="exampleInputSurname" aria-describedby="surNameUpdateHelp" placeholder="Lütfen Soyadınızı giriniz" />
                                     </div>
 
@@ -266,7 +266,7 @@ const UserInfo = () => {
                                         <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
                                         <input onInput={(e) => e.target.setCustomValidity("")}
                                             onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen kullanıcı adınızı giriniz")}
-                                            value={userNameUpdate} onChange={(e) => setuserNameUpdate(e.target.value)}
+                                            value={userNameUpdate} onChange={(e) => setUserNameUpdate(e.target.value)}
                                             required type="name" className="form-control" id="exampleInputUserName1"
                                             aria-describedby="userNameUpdateHelp" placeholder="Lütfen kullanıcı adınızı giriniz." />
                                     </div>
@@ -275,7 +275,7 @@ const UserInfo = () => {
                                         <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
                                         <input
                                             onInput={InvalidMsg} onInvalidCapture={InvalidMsg}
-                                            value={emailUpdate} onChange={(e) => setemailUpdate(e.target.value)}
+                                            value={emailUpdate} onChange={(e) => setEmailUpdate(e.target.value)}
                                             required type="email" className="form-control" id="exampleInputEmail1"
                                             aria-describedby="emailHelp" placeholder="Lütfen E-mail adresinizi giriniz" />
                                     </div>
@@ -285,7 +285,7 @@ const UserInfo = () => {
                                         <select
                                             onInput={(e) => e.target.setCustomValidity("")}
                                             onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen cinsiyetinizi seçiniz")}
-                                            value={genderUpdate} onChange={(e) => setgenderUpdate(e.target.value)}
+                                            value={genderUpdate} onChange={(e) => setGenderUpdate(e.target.value)}
                                             required className="form-control" id="sel1" name='sellist' >
                                             <option placeholder='Lütfen cinsiyetinizi seçiniz'></option>
                                             <option>Kadın</option>
@@ -297,7 +297,7 @@ const UserInfo = () => {
                                         <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
                                         <select
                                             onInput={(e) => e.target.setCustomValidity("")} onInvalidCapture={(e) => e.target.setCustomValidity("Please Choose city")}
-                                            value={cityUpdate} onChange={(e) => setcityUpdate(e.target.value)}
+                                            value={cityUpdate} onChange={(e) => setCityUpdate(e.target.value)}
                                             required className="form-control" id="sel2">
                                             <option></option>
                                             <option>İstanbul</option>

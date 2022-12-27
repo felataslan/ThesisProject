@@ -4,18 +4,16 @@ import Warning from '../image/warning.png'
 import "../style/login.scss"
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import '../style/Menu.scss'
+import '../style/menu.scss'
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 // import { useLocation } from 'react-router-dom'
-import Menu from '../components/Menu'
-import Footer from '../components/Footer'
+import Menu from '../components/menu.js'
+import Footer from '../components/footer.js'
 import  'bootstrap'
 function Login() {
 
   const navigate = useNavigate();
-  // const location=useLocation();
-  // const [control, setControl] = useState(true);
   const [controlVisible, setControlVisible] = useState(true);
   const [islogin, setIsLogin] = useState(false);
   const [email, setEmail] = useState("");

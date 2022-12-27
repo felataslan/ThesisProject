@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 function CreateSurveyComponenet() {
 
     //   const location=useLocation()
-    const [photoProduct, setphotoProduct] = useState("");
+    const [photoProduct, setPhotoProduct] = useState("");
     const [category, setCategory] = useState("");
     const [productName, setProductName] = useState("");
     const [description, setDescription] = useState("");
@@ -35,7 +35,7 @@ function CreateSurveyComponenet() {
         console.log(e.target.files);
         console.log(e.target)
         if (e.target && e.target.files[0]) {
-            setphotoProduct(e.target.files[0])
+            setPhotoProduct(e.target.files[0])
             
 
         }
@@ -43,7 +43,7 @@ function CreateSurveyComponenet() {
     }
 
 
-    const handleSubmit = async (e) => {
+    const asyncHandleSubmit = async (e) => {
         e.preventDefault()
         const formdata = new FormData();
         formdata.append('image', photoProduct)
@@ -89,7 +89,7 @@ function CreateSurveyComponenet() {
                 <div className='createSurvey'>
                     <h2> Ürün Ekle</h2>
                     <div className='questionInput' >
-                        <form onSubmit={handleSubmit} encType='multipart/form-data'>
+                        <form onSubmit={asyncHandleSubmit} encType='multipart/form-data'>
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1" style={{ fontSize: "16px" }}>Ürün Fotoğrafı</label>
                                 <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>

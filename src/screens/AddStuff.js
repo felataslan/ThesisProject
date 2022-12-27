@@ -1,8 +1,8 @@
 import React from 'react'
-import Menu from '../components/Menu'
+import Menu from '../components/menu.js'
 import "../style/addStuff.scss"
 import CreateProduct from '../components/createProducts'
-import Footer from '../components/Footer'
+import Footer from '../components/footer.js'
 
 
 const AddStuff = () => {

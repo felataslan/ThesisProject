@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Menu from '../components/Menu'
-import Footer from '../components/Footer'
+import Menu from '../components/menu.js'
+import Footer from '../components/footer.js'
 import 'bootstrap'
 import '../style/contact.scss'
 import axios from 'axios';
@@ -8,13 +8,13 @@ import axios from 'axios';
 
 const Contact = () => {
 
-  const [name, setname] = useState('');
-  const [surName, setsurname] = useState('');
+  const [name, setName] = useState('');
+  const [surName, setSurName] = useState('');
   const [description, setDescription] = useState('')
   const [email, setemail] = useState('');
   const [isSend, setIsSend] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const asyncHandleSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -29,8 +29,8 @@ const Contact = () => {
       ).then((result) => {
         console.log(result)
         if (result.data.succeded) {
-          setname('')
-          setsurname('')
+          setName('')
+          setSurName('')
           setemail('');
           setDescription('')
           setIsSend(true)
@@ -84,14 +84,14 @@ const Contact = () => {
         <div className='row'>
           <div className='col-lg-12'>
             <div className='form '>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={asyncHandleSubmit}>
                 <div className="form-group">
                   <label htmlFor="exampleInputName">Ad</label>
                   <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
                   <input
                     onInput={(e) => e.target.setCustomValidity("")}
                     onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen adınızı giriniz.")}
-                    value={name} onChange={(e) => setname(e.target.value)}
+                    value={name} onChange={(e) => setName(e.target.value)}
                     required type="text" className="form-control" id="exampleInputName"
                     aria-describedby="nameUpdateHelp" placeholder="Lütfen Adınızı giriniz" />
                 </div>
@@ -100,7 +100,7 @@ const Contact = () => {
                   <span style={{ color: "white", marginLeft: "3px" }} className='form-required'>*</span>
                   <input onInput={(e) => e.target.setCustomValidity("")}
                     onInvalidCapture={(e) => e.target.setCustomValidity("Lütfen soyadınızı giriniz.")}
-                    value={surName} onChange={(e) => setsurname(e.target.value)} required type="text"
+                    value={surName} onChange={(e) => setSurName(e.target.value)} required type="text"
                     className="form-control" id="exampleInputSurname" aria-describedby="surNameUpdateHelp" placeholder="Lütfen Soyadınızı giriniz" />
                 </div>
 

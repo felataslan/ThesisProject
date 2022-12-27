@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import Menu from '../components/Menu'
-import Footer from '../components/Footer'
-import Card from '../components/Cards'
+import Menu from '../components/menu.js'
+import Footer from '../components/footer.js'
+import Card from '../components/cards.js'
 import { useState } from 'react';
 import '../style/profile.scss'
 import 'bootstrap'
@@ -14,7 +14,7 @@ const Profile = () => {
   const [tecnology, setTecnology] = useState([]);
   const [jewerly, setJewerly] = useState([]);
   const [furniture, setFurniture] = useState([]);
-  const [isOwner, setisOwner] = useState(false)
+  const [isOwner, setIsOwner] = useState(false)
 
   useEffect(() => {
 
@@ -26,7 +26,7 @@ const Profile = () => {
       
      
       if (result.data.user === JSON.parse(localStorage.getItem('auth')).user._id) {
-        setisOwner(true);
+        setIsOwner(true);
       }
       if (result.data.data && result.data.data.length > 0) {
         const userProductData = []
@@ -61,7 +61,7 @@ const Profile = () => {
 
   }, [])
 
- const deleteProduct = async (stuff)=>{
+ const asyncDeleteProduct = async (stuff)=>{
       let alertMessage=''
       console.log(stuff)
       await axios.post('http://localhost:3100/products/product/delete',{
@@ -153,7 +153,7 @@ const Profile = () => {
             console.log('result',result)
             return(
               <div    key={index || {}} className='col-lg-4 col-md-6 col-sm-12 mt-5'>
-                <Card id={result._id} click={deleteProduct} isOwner={isOwner} description={result.description} to='/profile' png={result.url} title={result.productName} price={result.price + '₺'} />
+                <Card id={result._id} click={asyncDeleteProduct} isOwner={isOwner} description={result.description} to='/profile' png={result.url} title={result.productName} price={result.price + '₺'} />
               </div>
             )
           })}

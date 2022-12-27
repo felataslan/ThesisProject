@@ -8,18 +8,18 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import Login from './screens/Login';
-import SignUp from './screens/SignUp';
-import HomePage from './screens/HomePage';
-import  Jewelry  from './screens/Jewelry';
-import Furniture from './screens/Furnitures';
-import Tecnology from './screens/Tecnology';
-import Profile from './screens/Profile';
-import AddStuff from './screens/AddStuff';
-import UserInfo from './screens/UserInfo';
+import Login from './screens/login';
+import SignUp from './screens/signUp';
+import HomePage from './screens/homePage';
+import  Jewelry  from './screens/jewelry';
+import Furniture from './screens/furnitures';
+import Tecnology from './screens/tecnology';
+import Profile from './screens/profile';
+import AddStuff from './screens/addStuff';
+import UserInfo from './screens/userInfo';
 import ProductInfo from './screens/productInfo';
 import Contact from './screens/contact';
-import ForgetPass from './screens/ForgetPass';
+import ForgetPass from './screens/forgetPass';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
