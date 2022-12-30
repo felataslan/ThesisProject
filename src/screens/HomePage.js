@@ -62,7 +62,7 @@ const HomePage = () => {
 
       return (
             <div style={{ fontSize: '16px' }}>
-                  <Menu isLogin={localStorage.getItem('auth') ? true : false} />
+                  <Menu  isLogin={localStorage.getItem('auth') ? true : false} />
 
                   <div className='container'>
                         <div className='row' id='bghire'>

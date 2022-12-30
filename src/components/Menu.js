@@ -46,6 +46,48 @@ const Menu = ({isLogin},prop) => {
           <div onClick={() => setControl(!control)} className='UserIcon'>
             {!isLogin ?
               <div>
+                <div style={{
+                  display: control ? "none" : "flex", top: "45px", zIndex: "2", height: "50px", width: "300px",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "#E491924D",
+                  marginTop: "10px"
+                  }} className='openMenuLognot' >
+                  <div className='profileContainer' onClick={() => navigate("/login-admin")} style={{
+                    width: "80%", height: "30px", backgroundColor: "#F5F5F5CC", marginBottom: "10px", display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: "10px"
+                  }}>
+                    <Link className='menuLinkContain' to={"/login-admin"} style={{
+                      fontFamily: 'Inter',
+                      fontStyle: "normal",
+                      fontWeight: "700",
+                      fontSize: "13px",
+                      lineHeight: "21px",
+                      textAlign: "center",
+                      color: "#000000",
+                    }}>Admin Girişi</Link>
+                  </div>
+                  <div className='profileContainer' onClick={() => navigate("/login-editor")} style={{
+                    width: "80%", height: "30px", backgroundColor: "#F5F5F5CC", marginBottom: "10px", display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: "10px"
+                  }}>
+                    <Link className='menuLinkContain' to={"/login-editor"} style={{
+                      fontFamily: 'Inter',
+                      fontStyle: "normal",
+                      fontWeight: "700",
+                      fontSize: "13px",
+                      lineHeight: "21px",
+                      textAlign: "center",
+                      color: "#000000",
+                    }}>Editor Girişi</Link>
+                  </div>
+                  
+                </div>
               </div> : 
               <div onClick={() => setControl(!control)} className='UserIcon'>
                 <div style={{
@@ -72,13 +114,13 @@ const Menu = ({isLogin},prop) => {
                       color: "#000000",
                     }}>Profile</Link>
                   </div>
-                  <div className='profileContainer' onClick={() => navigate("/addStuff")} style={{
+                  <div className='profileContainer' onClick={() => navigate("/add-stuff")} style={{
                     width: "80%", height: "30px", backgroundColor: "#F5F5F5CC", marginBottom: "10px", display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
                     borderRadius: "10px"
                   }}>
-                    <Link className='menuLinkContain' to={"/addStuff"} style={{
+                    <Link className='menuLinkContain' to={"/add-stuff"} style={{
                       fontFamily: 'Inter',
                       fontStyle: "normal",
                       fontWeight: "700",
@@ -88,13 +130,13 @@ const Menu = ({isLogin},prop) => {
                       color: "#000000",
                     }}>Ürün Ekle</Link>
                   </div>
-                  <div className='profileContainer' onClick={() => navigate("/userInfo")} style={{
+                  <div className='profileContainer' onClick={() => navigate("/user-info")} style={{
                     width: "80%", height: "30px", backgroundColor: "#F5F5F5CC", marginBottom: "10px", display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
                     borderRadius: "10px"
                   }}>
-                    <Link className='menuLinkContain' to={"/userInfo"} style={{
+                    <Link className='menuLinkContain' to={"/user-info"} style={{
                       fontFamily: 'Inter',
                       fontStyle: "normal",
                       fontWeight: "700",

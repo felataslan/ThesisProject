@@ -229,7 +229,7 @@ const UserInfo = () => {
     return (
 
         <div className='App'>
-            <Menu isLogin={localStorage.getItem("token") ? true : false} />
+            <Menu  isLogin={localStorage.getItem("token") ? true : false} />
 
             <div className='container'>
                 <div className='row'>

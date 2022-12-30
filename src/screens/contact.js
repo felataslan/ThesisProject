@@ -68,7 +68,7 @@ const Contact = () => {
 
   return (
     <div>
-      <Menu isLogin={localStorage.getItem('auth') ? true : false} />
+      <Menu   isLogin={localStorage.getItem('auth') ? true : false} />
 
       <div className="col-md-12">
         <div style={{ display: isSend ? "block" : "none" , position:'relative', top:'30px' }} className="alert alert-success mt-5" id="sendMessage" >

@@ -13,10 +13,10 @@ const Cards = (prop) => {
     if(localStorage.getItem('productid')){
       localStorage.removeItem('productid')
       localStorage.setItem('productid',prop.id)
-      navigate('/fillProduct')
+      navigate('/fill-product')
     }else{
       localStorage.setItem('productid',prop.id)
-      navigate('/fillProduct')
+      navigate('/fill-product')
     }
   }
 
@@ -33,7 +33,7 @@ const Cards = (prop) => {
             {prop.description}
           </Card.Text>
           <Card.Text>Fiyat: {prop.price}</Card.Text>
-          <Button  onClick={asyncSendProductID}  variant="primary">Bilgi</Button>
+          <Button  onClick={asyncSendProductID} style={{display: prop.isAdmin ? 'none': 'block'}}  variant="primary">Bilgi</Button>
           
           <Button variant='danger' type='submit' onClick={(e)=>prop.click(prop.id)} style={{ marginLeft: '90px' ,display:prop.isOwner ? 'inline-block':'none'  }}>İlanı Kaldır</Button>
           
