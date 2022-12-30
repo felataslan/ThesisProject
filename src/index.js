@@ -20,6 +20,15 @@ import UserInfo from './screens/userInfo';
 import ProductInfo from './screens/productInfo';
 import Contact from './screens/contact';
 import ForgetPass from './screens/forgetPass';
+import Admin from './screens/adminLogin'
+import Editor from './screens/editorLogin';
+import Users from './screens/users';
+import Products from './screens/products';
+import Editors from './screens/editors';
+import AddEditor from './screens/addEditor';
+import EditorProduct from './screens/editorProduct';
+import EditorUsers from './screens/editorUsers';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -33,11 +42,25 @@ root.render(
       <Route path='/furniture' element={<Furniture/>}/>
       <Route path='/tecnology' element={<Tecnology/>}/>
       <Route path='/profile' element={<Profile/>}/>
-      <Route path='/addStuff' element={<AddStuff/>}/>
-      <Route path='/userInfo' element={<UserInfo/>}/>
-      <Route path='/fillProduct' element={<ProductInfo/>}/>
+      <Route path='/add-stuff' element={<AddStuff/>}/>
+      <Route path='/user-info' element={<UserInfo/>}/>
+      <Route path='/fill-product' element={<ProductInfo/>}/>
       <Route path='/mailer' element={<Contact/>}/>
       <Route path='/forget' element={<ForgetPass/>}/>
+      <Route path='/login-admin' element={<Admin/>}/>
+      <Route path='/login-editor' element={<Editor/>}/>
+      <Route path='/editors' element={<Editors/>}/>
+      <Route path='/products' element={<Products/>}/>
+      <Route path='/users' element={<Users/>}/>
+      <Route path='/add-editor' element={<AddEditor/>}/>
+      <Route path='/editor-products' element={<EditorProduct/>}/>
+      <Route path='/editor-users' element={<EditorUsers/>}/>
+
+
+
+
+
+
     
 
 

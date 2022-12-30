@@ -1,0 +1,19 @@
+#bgusers{
+    z-index: -1;
+    position: relative;
+    top:30px;
+    border-radius: 20px;
+    height: 300px;
+    align-items: center;
+
+
+    background-color: #dc3545;
+    color: white;
+    h1{
+        font-size: 64px;
+        text-align: center;
+        justify-content: center;
+        text-shadow: 3px 3px 3px gray;
+    }
+    
+}

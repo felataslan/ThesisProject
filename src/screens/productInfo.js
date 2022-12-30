@@ -25,7 +25,7 @@ const [price,setPrice]=useState('');
 
     useEffect(()=>{
 
-        axios.post('http://localhost:3100/products/product/fillproduct',
+        axios.post('http://localhost:3100/products/product/fill-product',
         {
             data: localStorage.getItem('productid'),
         },
@@ -70,7 +70,7 @@ const [price,setPrice]=useState('');
 
   return (
     <div>       
-        <Menu isLogin={localStorage.getItem("token")? true:false} />
+        <Menu   isLogin={localStorage.getItem("token")? true:false} />
         
         <Card style={{ width: '50%', height: '36rem', top:'3rem',position:'relative', left:'25%', backgroundColor:'#dc3545' }}>
         <Card.Img variant="top" style={{ position:'relative', left:'25%', width: '50%', height: '15rem' }} src={url} />

@@ -55,7 +55,7 @@ const Furniture = () => {
 
   return (
     <div>
-      <Menu isLogin={localStorage.getItem("token") ? true : false} />
+      <Menu   isLogin={localStorage.getItem("token") ? true : false} />
 
       <div className='container'>
         <div className='row ' id='bgfurniture'>

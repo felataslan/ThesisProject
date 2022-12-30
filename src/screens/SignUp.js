@@ -120,7 +120,7 @@ const SignUp =()=> {
     }
     return (
         <div className='App'>
-           <Menu to='signup'/>
+           <Menu  to='signup'/>
 
             <div className='SignUp bg-danger' id='edit'>
                 
