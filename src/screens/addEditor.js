@@ -22,27 +22,9 @@ const AddEditor = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [gender, setGender] = useState("");
     const [city, setCity] = useState("");
-    // const [country, setCountry] = useState("");
     const [islogin, setIsLogin] = useState(false);
-    // const [countryList, setCountryList] = useState([]);
-    // const [cityList, setCityList] = useState([]);
 
-    // useEffect(() => {
-    //     axios.get(
-    //         '/api/user/countries',
-
-    //         {}
-    //     ).then((result) => {
-    //         const countryData = []
-    //         result.data.data.surveys.map((item) => {
-    //             //console.log(item)
-    //             countryData.push(item)
-    //         })
-
-    //         setCountryList(countryData);
-    //     })
-    // }, [])
-
+ 
     function InvalidMsg(e) {
         if (e.target.value === '') {
             e.target.setCustomValidity('Please fill in the marked fields');

@@ -47,7 +47,7 @@ const Menu = ({isLogin},prop) => {
             {!isLogin ?
               <div>
                 <div style={{
-                  display: control ? "none" : "flex", top: "45px", zIndex: "2", height: "50px", width: "300px",
+                  display: control ? "none" : "flex", top: "45px", zIndex: "100", height: "50px", width: "300px",
                   flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",
@@ -91,7 +91,7 @@ const Menu = ({isLogin},prop) => {
               </div> : 
               <div onClick={() => setControl(!control)} className='UserIcon'>
                 <div style={{
-                  display: control ? "none" : "flex", top: "45px", zIndex: "2", height: "150px", width: "300px",
+                  display: control ? "none" : "flex", top: "45px", zIndex: "100", height: "150px", width: "300px",
                   flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",

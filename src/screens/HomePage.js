@@ -75,7 +75,7 @@ const HomePage = () => {
 
                   <div id='furniture' className='container' >
                         <h3 style={{ textAlign: 'center' }}>Ev Eşyaları</h3>
-                        <div className='row' >
+                        <div id='fur' className='row' >
                               {furniture && furniture.length > 0 && furniture.map((result, index) => {
                                     console.log('result', result)
                                     return (
@@ -93,12 +93,12 @@ const HomePage = () => {
 
                   <div id='jewerly' className='container'>
                         <h3 style={{ textAlign: 'center' }}>Takılar</h3>
-                        <div className='row' >
+                        <div id='jew' className='row' >
                         {jewerly && jewerly.length > 0 && jewerly.map((result, index) => {
                                     console.log('result', result)
                                     return (
 
-                                          <div key={index || {}} className='col-sm-12 col-md-6 col-lg-4  card-J' >
+                                          <div key={index || {}} className='col-sm-12 col-md-6 col-lg-4 mt-3 card-J' >
                                                 <Card id={result._id} isOwner={false} description={result.description} to='/profile' png={result.url} title={result.productName} price={result.price + '₺'} />
                                           </div>
                                     )
@@ -110,13 +110,13 @@ const HomePage = () => {
 
                   <div id='tecnology' className='container'>
 
-                        <h3 style={{ textAlign: 'center' }}>Teknolojik Aletler</h3>
-                        <div className='row' >
+                        <h3  style={{ textAlign: 'center' }}>Teknolojik Aletler</h3>
+                        <div id='tec' className='row' >
                         {tecnology && tecnology.length > 0 && tecnology.map((result, index) => {
                                     console.log('result', result)
                                     return (
 
-                                          <div key={index || {}} className='col-sm-12 col-md-6 col-lg-4  card-J' >
+                                          <div key={index || {}} className='col-sm-12 col-md-6 col-lg-4 mt-3 card-J' >
                                                 <Card id={result._id} isOwner={false} description={result.description} to='/profile' png={result.url} title={result.productName} price={result.price + '₺'} />
                                           </div>
                                     )

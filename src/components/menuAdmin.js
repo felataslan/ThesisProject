@@ -23,7 +23,7 @@ const MenuEditor = ({ isLogin }, prop) => {
     return (
         <div className='Menu' style={{ fontSize: '16px' }}>
             <nav className='head bg-danger'>
-                <h1 className='Header'>HIRE STUFF Admin Paneli</h1>
+                <h1 className='Header'>Admin Paneli</h1>
                 <ul >
                     <li style={{ display: isLogin ? 'none' : 'block' }}>
                         <Link to={'/signup'} className='btn btn-primary  signUpButton  ' >
@@ -120,7 +120,7 @@ const MenuEditor = ({ isLogin }, prop) => {
                                             alignItems: "center",
                                             borderRadius: "10px"
                                         }}>
-                                            <Link className='menuLinkContain' to={"/admin"} style={{
+                                            <Link className='menuLinkContain' to={"/login-admin"} style={{
                                                 marginLeft: "5px",
                                                 fontFamily: 'Inter',
                                                 fontStyle: "normal",

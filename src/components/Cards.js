@@ -35,7 +35,7 @@ const Cards = (prop) => {
           <Card.Text>Fiyat: {prop.price}</Card.Text>
           <Button  onClick={asyncSendProductID} style={{display: prop.isAdmin ? 'none': 'block'}}  variant="primary">Bilgi</Button>
           
-          <Button variant='danger' type='submit' onClick={(e)=>prop.click(prop.id)} style={{ marginLeft: '90px' ,display:prop.isOwner ? 'inline-block':'none'  }}>İlanı Kaldır</Button>
+          <Button variant='danger' type='submit' onClick={(e)=>prop.click(prop.id)} style={{ position:'relative', top:'-35px', marginLeft: '90px' ,display:prop.isOwner ? 'inline-block':'none'  }}>İlanı Kaldır</Button>
           
         </Card.Body>
       </Card>

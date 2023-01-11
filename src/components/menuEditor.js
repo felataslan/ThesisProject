@@ -23,7 +23,7 @@ const MenuEditor = ({ isLogin }, prop) => {
     return (
         <div className='Menu' style={{ fontSize: '16px' }}>
             <nav className='head bg-danger'>
-                <h1 className='Header'>HIRE STUFF Editör Paneli</h1>
+                <h1 className='Header'>Editör Paneli</h1>
                 <ul >
                     <li style={{ display: isLogin ? 'none' : 'block' }}>
                         <Link to={'/signup'} className='btn btn-primary  signUpButton  ' >
