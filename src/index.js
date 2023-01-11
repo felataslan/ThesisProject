@@ -11,7 +11,7 @@ import {
 import Login from './screens/login';
 import SignUp from './screens/signUp';
 import HomePage from './screens/homePage';
-import  Jewelry  from './screens/jewelry';
+import Jewelry  from './screens/jewelry';
 import Furniture from './screens/furnitures';
 import Tecnology from './screens/tecnology';
 import Profile from './screens/profile';

@@ -76,7 +76,7 @@ const Furniture = () => {
               />
                
             </div>
-            <div className='col-lg-2 mt-5' style={{position:'relative', top:'26px',left:'40px', display:'inline-block'}}>
+            <div className='col-lg-2  mt-5' style={{position:'relative', top:'26px',left:'40px', display:'inline-block'}}>
             <button   type='submit' className='btn btn-primary ' >Ürün Ara </button>
             </div>
             

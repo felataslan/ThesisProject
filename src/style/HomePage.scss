@@ -1,33 +1,61 @@
-#jewerly{
-    padding-top:60px;
-    height: auto;
-
-}
-
-#furniture{
+#jewerly {
     padding-top: 60px;
     height: auto;
+
+    #jew {
+        margin-top: 40px;
+
+        @media (max-width:800px) {
+            margin-left: 100px;
+        }
+    }
+
 }
 
-.card-T{
+#furniture {
+    padding-top: 60px;
+    height: auto;
+
+    #fur {
+        margin-top: 40px;
+
+
+        @media (max-width:800px) {
+            margin-left: 100px;
+        }
+    }
+}
+
+.card-T {
     justify-content: center;
     align-items: center;
 }
-#tecnology{
+
+#tecnology {
     padding-top: 60px;
     height: auto;
+
+    #tec {
+        margin-top: 40px;
+
+
+        @media (max-width:800px) {
+            margin-left: 100px;
+        }
+    }
 }
 
-#bghire{
+#bghire {
     z-index: -1;
     position: relative;
-    top:30px;
+    top: 30px;
     border-radius: 20px;
     height: 400px;
     align-items: center;
     background-color: #dc3545;
     color: white;
-    h1{
+
+    h1 {
         font-size: 64px;
         text-align: center;
         justify-content: center;
